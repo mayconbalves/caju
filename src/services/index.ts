@@ -35,7 +35,9 @@ export const updateStatusRegistrations = async (id: string, status: string) => {
     const response = await axios.patch(`http://localhost:3000/registrations/${id}`, {
       status: handleStatus(status)
     });
-    console.log(response, 'put')
+    if (response.status === 200) {
+      return fetchAllRegistrations()
+    }
   } catch (error) {
     return error;
   }

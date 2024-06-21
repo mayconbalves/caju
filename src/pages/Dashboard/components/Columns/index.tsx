@@ -11,7 +11,7 @@ const allColumns = [
 type Props = {
   registrations?: any[];
   handleDeleteCard?: any
-  updateStatusRegistrations?: any
+  handleUpdateCard?: any
 };
 const Collumns = (props: Props) => {
   return (
@@ -28,7 +28,7 @@ const Collumns = (props: Props) => {
                   return (
                     <RegistrationCard
                       handleDeleteCard={props.handleDeleteCard}
-                      updateStatusRegistrations={props.updateStatusRegistrations}
+                      handleUpdateCard={props.handleUpdateCard}
                       data={registration}
                       key={registration.id}
                     />

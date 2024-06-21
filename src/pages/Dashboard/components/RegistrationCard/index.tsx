@@ -10,7 +10,7 @@ import * as S from "./styles";
 type Props = {
   data: any;
   handleDeleteCard?: any;
-  updateStatusRegistrations?: any;
+  handleUpdateCard?: any;
 };
 
 const RegistrationCard = (props: Props) => {
@@ -31,19 +31,19 @@ const RegistrationCard = (props: Props) => {
       <S.Actions>
         <ButtonSmall
           bgcolor="rgb(255, 145, 154)"
-          onClick={() => props.updateStatusRegistrations(props.data.id, 'Reprovar')}
+          onClick={() => props.handleUpdateCard(props.data.id, 'Reprovar')}
         >
           Reprovar
         </ButtonSmall>
         <ButtonSmall
           bgcolor="rgb(155, 229, 155)"
-          onClick={() => props.updateStatusRegistrations(props.data.id, 'Aprovar')}
+          onClick={() => props.handleUpdateCard(props.data.id, 'Aprovar')}
         >
           Aprovar
         </ButtonSmall>
         <ButtonSmall
           bgcolor="#ff8858"
-          onClick={() => props.updateStatusRegistrations(props.data.id, 'Revisar')}
+          onClick={() => props.handleUpdateCard(props.data.id, 'Revisar')}
         >
           Revisar novamente
         </ButtonSmall>

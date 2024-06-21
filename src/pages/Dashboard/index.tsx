@@ -26,13 +26,19 @@ const DashboardPage = () => {
     setRegistrarion(updatedData)
   };
 
+  const handleUpdateCard = async (id: string, status: string) => {
+    const updatedData = await updateStatusRegistrations(id, status)
+
+    setRegistrarion(updatedData)
+  }
+
   return (
     <S.Container>
       <SearchBar />
       <Collumns
         registrations={registrations}
         handleDeleteCard={handleDeleteCard}
-        updateStatusRegistrations={updateStatusRegistrations}
+        handleUpdateCard={handleUpdateCard}
       />
     </S.Container>
   );
