@@ -16,15 +16,19 @@ type Props = {
 const Collumns = (props: Props) => {
   return (
     <S.Container>
-      {allColumns.map((collum) => {
+      {allColumns.map((column) => {
+        const filteredRegistrations = props.registrations?.filter(
+          registration => registration.status === column.status
+        );
+
         return (
-          <S.Column status={collum.status} key={collum.title}>
+          <S.Column status={column.status} key={column.title}>
             <>
-              <S.TitleColumn status={collum.status}>
-                {collum.title}
+              <S.TitleColumn status={column.status}>
+                {column.title}
               </S.TitleColumn>
               <S.CollumContent>
-                {props?.registrations?.map((registration) => {
+                {filteredRegistrations?.map((registration) => {
                   return (
                     <RegistrationCard
                       handleDeleteCard={props.handleDeleteCard}
@@ -42,4 +46,5 @@ const Collumns = (props: Props) => {
     </S.Container>
   );
 };
+
 export default Collumns;
