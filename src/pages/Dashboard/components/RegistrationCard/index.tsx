@@ -4,7 +4,7 @@ import {
   HiOutlineTrash,
   HiOutlineUser,
 } from "react-icons/hi";
-import { ButtonSmall } from "~/components/Buttons";
+import { ButtonSmall } from "@/components/Buttons";
 import * as S from "./styles";
 
 type Props = {
