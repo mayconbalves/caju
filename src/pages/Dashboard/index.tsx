@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react';
+import { deleteRegistrationsById, fetchAllRegistrations, updateStatusRegistrations } from "../../services";
 import Collumns from "./components/Columns";
-import * as S from "./styles";
 import { SearchBar } from "./components/Searchbar";
-import axios from "axios"
+import * as S from "./styles";
 
 
 
@@ -10,8 +10,8 @@ const DashboardPage = () => {
   const [registrations, setRegistrarion] = useState<any>()
 
   useEffect(() => {
-    const fetchDate = async() => {
-      const { data } = await axios.get('http://localhost:3000/registrations')
+    const fetchDate =  async () => {
+      const data = await fetchAllRegistrations()
 
       setRegistrarion(data)
     }
@@ -20,12 +20,20 @@ const DashboardPage = () => {
   }, [])
 
 
+  const handleDeleteCard = async (id: string) => {
+    const updatedData = await deleteRegistrationsById(id);
 
-  console.log(registrations, 'registration')
+    setRegistrarion(updatedData)
+  };
+
   return (
     <S.Container>
       <SearchBar />
-      <Collumns registrations={registrations} />
+      <Collumns
+        registrations={registrations}
+        handleDeleteCard={handleDeleteCard}
+        updateStatusRegistrations={updateStatusRegistrations}
+      />
     </S.Container>
   );
 };

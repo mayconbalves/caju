@@ -1,6 +1,6 @@
 
-import * as S from "./styles";
 import RegistrationCard from "../RegistrationCard";
+import * as S from "./styles";
 
 const allColumns = [
   { status: 'REVIEW', title: "Pronto para revisar" },
@@ -10,6 +10,8 @@ const allColumns = [
 
 type Props = {
   registrations?: any[];
+  handleDeleteCard?: any
+  updateStatusRegistrations?: any
 };
 const Collumns = (props: Props) => {
   return (
@@ -25,6 +27,8 @@ const Collumns = (props: Props) => {
                 {props?.registrations?.map((registration) => {
                   return (
                     <RegistrationCard
+                      handleDeleteCard={props.handleDeleteCard}
+                      updateStatusRegistrations={props.updateStatusRegistrations}
                       data={registration}
                       key={registration.id}
                     />
