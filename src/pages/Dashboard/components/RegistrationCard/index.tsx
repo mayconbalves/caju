@@ -1,17 +1,17 @@
-import { ButtonSmall } from "@/components/Buttons";
+import { ButtonSmall } from '@/components/Buttons'
 import {
   HiOutlineCalendar,
   HiOutlineMail,
   HiOutlineTrash,
-  HiOutlineUser,
-} from "react-icons/hi";
-import * as S from "./styles";
+  HiOutlineUser
+} from 'react-icons/hi'
+import * as S from './styles'
 
 type Props = {
-  data: any;
-  handleDeleteCard?: any;
-  handleUpdateCard?: any;
-};
+  data: any
+  handleDeleteCard?: any
+  handleUpdateCard?: any
+}
 
 const RegistrationCard = (props: Props) => {
   return (
@@ -29,29 +29,33 @@ const RegistrationCard = (props: Props) => {
         <span>{props.data.admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
-        <ButtonSmall
-          bgcolor="rgb(255, 145, 154)"
-          onClick={() => props.handleUpdateCard(props.data.id, 'Reprovar')}
-        >
-          Reprovar
-        </ButtonSmall>
-        <ButtonSmall
-          bgcolor="rgb(155, 229, 155)"
-          onClick={() => props.handleUpdateCard(props.data.id, 'Aprovar')}
-        >
-          Aprovar
-        </ButtonSmall>
-        <ButtonSmall
-          bgcolor="#ff8858"
-          onClick={() => props.handleUpdateCard(props.data.id, 'Revisar')}
-        >
-          Revisar novamente
-        </ButtonSmall>
-
-        <HiOutlineTrash onClick={() => props.handleDeleteCard(props.data.id)}/>
+        {props.data.status === 'REVIEW' ? (
+          <>
+            <ButtonSmall
+              bgcolor="rgb(255, 145, 154)"
+              onClick={() => props.handleUpdateCard(props.data.id, 'Reprovar')}
+            >
+              Reprovar
+            </ButtonSmall>
+            <ButtonSmall
+              bgcolor="rgb(155, 229, 155)"
+              onClick={() => props.handleUpdateCard(props.data.id, 'Aprovar')}
+            >
+              Aprovar
+            </ButtonSmall>
+          </>
+        ) : (
+          <ButtonSmall
+            bgcolor="#ff8858"
+            onClick={() => props.handleUpdateCard(props.data.id, 'Revisar')}
+          >
+            Revisar novamente
+          </ButtonSmall>
+        )}
+        <HiOutlineTrash onClick={() => props.handleDeleteCard(props.data.id)} />
       </S.Actions>
     </S.Card>
-  );
-};
+  )
+}
 
-export default RegistrationCard;
+export default RegistrationCard
