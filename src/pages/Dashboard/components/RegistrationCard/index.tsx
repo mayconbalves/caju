@@ -1,10 +1,10 @@
+import { ButtonSmall } from "@/components/Buttons";
 import {
   HiOutlineCalendar,
   HiOutlineMail,
   HiOutlineTrash,
   HiOutlineUser,
 } from "react-icons/hi";
-import { ButtonSmall } from "@/components/Buttons";
 import * as S from "./styles";
 
 type Props = {

@@ -36,7 +36,7 @@ export const updateStatusRegistrations = async (id: string, status: string) => {
       status: handleStatus(status)
     });
     if (response.status === 200) {
-      return fetchAllRegistrations()
+      return await fetchAllRegistrations()
     }
   } catch (error) {
     return error;
