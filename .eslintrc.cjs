@@ -6,7 +6,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'plugin:@typescript-eslint/recommended',
     'eslint-config-prettier',
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
   ],
   settings: {
     react: {
@@ -29,4 +29,5 @@ module.exports = {
     "import/named": "off",
     "react-hooks/exhaustive-deps": "warn"
   },
+  root: true
 };
