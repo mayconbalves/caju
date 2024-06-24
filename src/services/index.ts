@@ -45,3 +45,20 @@ export const updateStatusRegistrations = async (id: string, status: string) => {
     return error
   }
 }
+
+export const newUserRegistrations = async (params) => {
+  try {
+    const response = await axios.post(`http://localhost:3000/registrations/`, {
+      admissionDate: params.admissionDate,
+      email: params.email,
+      employeeName: params.employeeName,
+      status: 'REVIEW',
+      cpf: params.cpf
+    })
+    if (response.status === 201) {
+      return await fetchAllRegistrations()
+    }
+  } catch (error) {
+    return error
+  }
+}

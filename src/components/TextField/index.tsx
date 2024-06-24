@@ -21,16 +21,36 @@ export const Input = styled.input`
   }
 `
 type Props = {
+  error?: any
+  id?: string
   label?: string
-  error?: string
+  name: string
+  onChange: (event: any) => void
+  value: string
+  type?: string
 } & InputHTMLAttributes<any>
 
-const TextField = (props: Props) => {
+const TextField = ({
+  error,
+  id,
+  label,
+  name,
+  onChange,
+  placeholder,
+  value,
+  type
+}: Props) => {
   return (
     <div>
-      <label htmlFor={props.id}>{props.label}</label>
-      <Input {...props} />
-      <span style={{ fontSize: 12, color: 'red' }}>{props.error}</span>
+      <label htmlFor={id}>{label}</label>
+      <Input
+        onChange={onChange}
+        value={value}
+        name={name}
+        placeholder={placeholder}
+        type={type}
+      />
+      <span style={{ fontSize: 12, color: 'red' }}>{error}</span>
     </div>
   )
 }
