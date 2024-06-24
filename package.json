@@ -9,6 +9,7 @@
     "build": "tsc && vite build",
     "test:dev": "jest --watch --verbose --no-cache",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "format": "yarn prettier . --write",
     "preview": "vite preview",
     "prepare": "husky"
   },
@@ -25,6 +26,7 @@
     "@nabla/vite-plugin-eslint": "^2.0.4",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "13.0.0",
+    "@types/jest": "^29.5.12",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@types/react-router-dom": "^5.3.3",
@@ -49,6 +51,8 @@
     "vite": "^5.2.0"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": [
+      "yarn format"
+    ]
   }
 }

@@ -1,60 +1,91 @@
 import { ButtonSmall } from '@/components/Buttons'
+import NotificationModal from '@/components/NotificationModal'
+import { useEffect, useState } from 'react'
 import {
   HiOutlineCalendar,
   HiOutlineMail,
   HiOutlineTrash,
   HiOutlineUser
 } from 'react-icons/hi'
-import * as S from './styles'
+import { Actions, Card, IconAndText } from './styles'
+import { Props } from './types'
 
-type Props = {
-  data: any
-  handleDeleteCard?: any
-  handleUpdateCard?: any
-}
+const RegistrationCard = ({
+  employeeName,
+  email,
+  admissionDate,
+  status,
+  id,
+  submitChangeCardStatus,
+  handleDeleteCard
+}: Props) => {
+  const [values, setValues] = useState<{ id: string; status: string }>({
+    id: '',
+    status: ''
+  })
+  const [toggleModal, setToggleModal] = useState(false)
 
-const RegistrationCard = (props: Props) => {
+  const changeCardStatus = (cardId: string, cardStatus: string) => {
+    setValues({ id: cardId, status: cardStatus })
+  }
+
+  useEffect(() => {
+    if (values.id && values.status) {
+      setToggleModal(true)
+    }
+  }, [values])
+
   return (
-    <S.Card>
-      <S.IconAndText>
-        <HiOutlineUser />
-        <h3>{props.data.employeeName}</h3>
-      </S.IconAndText>
-      <S.IconAndText>
-        <HiOutlineMail />
-        <p>{props.data.email}</p>
-      </S.IconAndText>
-      <S.IconAndText>
-        <HiOutlineCalendar />
-        <span>{props.data.admissionDate}</span>
-      </S.IconAndText>
-      <S.Actions>
-        {props.data.status === 'REVIEW' ? (
-          <>
+    <>
+      {toggleModal && (
+        <NotificationModal
+          setToggleModal={setToggleModal}
+          submitChangeCardStatus={submitChangeCardStatus}
+          values={values}
+        />
+      )}
+
+      <Card>
+        <IconAndText>
+          <HiOutlineUser />
+          <h3>{employeeName}</h3>
+        </IconAndText>
+        <IconAndText>
+          <HiOutlineMail />
+          <p>{email}</p>
+        </IconAndText>
+        <IconAndText>
+          <HiOutlineCalendar />
+          <span>{admissionDate}</span>
+        </IconAndText>
+        <Actions>
+          {status === 'REVIEW' ? (
+            <>
+              <ButtonSmall
+                bgcolor="rgb(255, 145, 154)"
+                onClick={() => changeCardStatus(id, 'Reprovar')}
+              >
+                Reprovar
+              </ButtonSmall>
+              <ButtonSmall
+                bgcolor="rgb(155, 229, 155)"
+                onClick={() => changeCardStatus(id, 'Aprovar')}
+              >
+                Aprovar
+              </ButtonSmall>
+            </>
+          ) : (
             <ButtonSmall
-              bgcolor="rgb(255, 145, 154)"
-              onClick={() => props.handleUpdateCard(props.data.id, 'Reprovar')}
+              bgcolor="#ff8858"
+              onClick={() => changeCardStatus(id, 'Revisar')}
             >
-              Reprovar
+              Revisar novamente
             </ButtonSmall>
-            <ButtonSmall
-              bgcolor="rgb(155, 229, 155)"
-              onClick={() => props.handleUpdateCard(props.data.id, 'Aprovar')}
-            >
-              Aprovar
-            </ButtonSmall>
-          </>
-        ) : (
-          <ButtonSmall
-            bgcolor="#ff8858"
-            onClick={() => props.handleUpdateCard(props.data.id, 'Revisar')}
-          >
-            Revisar novamente
-          </ButtonSmall>
-        )}
-        <HiOutlineTrash onClick={() => props.handleDeleteCard(props.data.id)} />
-      </S.Actions>
-    </S.Card>
+          )}
+          <HiOutlineTrash onClick={() => handleDeleteCard(id)} />
+        </Actions>
+      </Card>
+    </>
   )
 }
 

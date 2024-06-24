@@ -1,25 +1,25 @@
-
-import RegistrationCard from "../RegistrationCard";
-import * as S from "./styles";
+import RegistrationCard from '../RegistrationCard'
+import * as S from './styles'
 
 const allColumns = [
-  { status: 'REVIEW', title: "Pronto para revisar" },
-  { status: 'APPROVED', title: "Aprovado" },
-  { status: 'REPROVED', title: "Reprovado" },
-];
+  { status: 'REVIEW', title: 'Pronto para revisar' },
+  { status: 'APPROVED', title: 'Aprovado' },
+  { status: 'REPROVED', title: 'Reprovado' }
+]
 
-type Props = {
-  registrations?: any[];
-  handleDeleteCard?: any
-  handleUpdateCard?: any
-};
-const Collumns = (props: Props) => {
+import { Props } from './types'
+
+const Collumns = ({
+  registrations,
+  handleDeleteCard,
+  submitChangeCardStatus
+}: Props) => {
   return (
     <S.Container>
       {allColumns.map((column) => {
-        const filteredRegistrations = props.registrations?.filter(
-          registration => registration.status === column.status
-        );
+        const filteredRegistrations = registrations?.filter(
+          (registration) => registration.status === column.status
+        )
 
         return (
           <S.Column status={column.status} key={column.title}>
@@ -31,20 +31,24 @@ const Collumns = (props: Props) => {
                 {filteredRegistrations?.map((registration) => {
                   return (
                     <RegistrationCard
-                      handleDeleteCard={props.handleDeleteCard}
-                      handleUpdateCard={props.handleUpdateCard}
-                      data={registration}
+                      id={registration.id}
+                      admissionDate={registration.admissionDate}
+                      email={registration.email}
+                      employeeName={registration.employeeName}
+                      status={registration.status}
                       key={registration.id}
+                      handleDeleteCard={handleDeleteCard}
+                      submitChangeCardStatus={submitChangeCardStatus}
                     />
-                  );
+                  )
                 })}
               </S.CollumContent>
             </>
           </S.Column>
-        );
+        )
       })}
     </S.Container>
-  );
-};
+  )
+}
 
-export default Collumns;
+export default Collumns
