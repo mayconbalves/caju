@@ -21,13 +21,12 @@ const NewUserPage = () => {
     admissionDate: ''
   })
 
-  const handleChange = (event) => {
+  const handleChange = (event: { target: { name: string; value: string } }) => {
     const { name, value } = event.target
     setValues((prevFormData) => ({ ...prevFormData, [name]: value }))
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  const handleSubmit = () => {
     newUserRegistrations(values)
     goToHome()
   }

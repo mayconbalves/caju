@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
 import {
   deleteRegistrationsById,
   fetchAllRegistrations,
+  fetchRegistrationsByDocumentId,
   updateStatusRegistrations
-} from '../../services'
+} from '@/services'
+import { documentIdMask, documentIdValidation } from '@/utils/DocumentIdHelpers'
+import { useEffect, useState } from 'react'
 import Collumns from './components/Columns'
-import { SearchBar } from './components/Searchbar'
+import SearchBar from './components/Searchbar'
 import * as S from './styles'
 
 export type Props = {
@@ -16,6 +18,7 @@ export type Props = {
 const DashboardPage = () => {
   const [registrations, setRegistrarion] = useState<any>()
   const [toggleModal, setToggleModal] = useState(false)
+  const [values, setValues] = useState({ documentId: '' })
 
   useEffect(() => {
     const fetchDate = async () => {
@@ -26,6 +29,25 @@ const DashboardPage = () => {
 
     fetchDate()
   }, [])
+
+  const handleChange = async (event: {
+    target: { name: string; value: string }
+  }) => {
+    const { name, value } = event.target
+    setValues((prevFormData) => ({
+      ...prevFormData,
+      [name]: documentIdMask(value)
+    }))
+
+    if (documentIdValidation(value)) {
+      const onlyCard = await fetchRegistrationsByDocumentId(value)
+      setRegistrarion(onlyCard)
+    } else {
+      const data = await fetchAllRegistrations()
+
+      setRegistrarion(data)
+    }
+  }
 
   const submitChangeCardStatus = (id: string, status: string) => {
     if (id && status !== '') {
@@ -51,7 +73,7 @@ const DashboardPage = () => {
 
   return (
     <S.Container>
-      <SearchBar />
+      <SearchBar values={values.documentId} onChange={handleChange} />
       <Collumns
         registrations={registrations}
         handleDeleteCard={handleDeleteCard}

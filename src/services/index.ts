@@ -1,8 +1,20 @@
 import axios from 'axios'
+import { NewUserProps } from './types'
 
 export const fetchAllRegistrations = async () => {
   try {
     const response = await axios.get('http://localhost:3000/registrations')
+    return response.data
+  } catch (error) {
+    return error
+  }
+}
+
+export const fetchRegistrationsByDocumentId = async (documentId: string) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/registrations?cpf=${documentId}`
+    )
     return response.data
   } catch (error) {
     return error
@@ -46,14 +58,14 @@ export const updateStatusRegistrations = async (id: string, status: string) => {
   }
 }
 
-export const newUserRegistrations = async (params) => {
+export const newUserRegistrations = async (params: NewUserProps) => {
   try {
     const response = await axios.post(`http://localhost:3000/registrations/`, {
       admissionDate: params.admissionDate,
       email: params.email,
       employeeName: params.employeeName,
       status: 'REVIEW',
-      cpf: params.cpf
+      cpf: params.documentId
     })
     if (response.status === 201) {
       return await fetchAllRegistrations()

@@ -1,11 +1,13 @@
-import { HiRefresh } from 'react-icons/hi'
-import { useHistory } from 'react-router-dom'
 import Button from '@/components/Buttons'
 import { IconButton } from '@/components/Buttons/IconButton'
 import TextField from '@/components/TextField'
 import routes from '@/router/routes'
-import * as S from './styles'
-export const SearchBar = () => {
+import { HiRefresh } from 'react-icons/hi'
+import { useHistory } from 'react-router-dom'
+import { Actions, Container } from './styles'
+import { Props } from './types'
+
+const SearchBar = ({ values, onChange }: Props) => {
   const history = useHistory()
 
   const goToNewAdmissionPage = () => {
@@ -13,14 +15,22 @@ export const SearchBar = () => {
   }
 
   return (
-    <S.Container>
-      <TextField placeholder="Digite um CPF válido" />
-      <S.Actions>
+    <Container>
+      <TextField
+        aria-label="document-id"
+        placeholder="Digite um CPF válido"
+        name="documentId"
+        onChange={onChange}
+        value={values}
+      />
+      <Actions>
         <IconButton aria-label="refetch">
           <HiRefresh />
         </IconButton>
         <Button onClick={() => goToNewAdmissionPage()}>Nova Admissão</Button>
-      </S.Actions>
-    </S.Container>
+      </Actions>
+    </Container>
   )
 }
+
+export default SearchBar
