@@ -6,7 +6,7 @@ export type Props = {
   label?: string
   name: string
   onChange: (event: any) => void
-  placeholder: string
+  placeholder?: string
   value: string
   type?: string
 } & InputHTMLAttributes<any>
