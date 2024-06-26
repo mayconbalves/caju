@@ -1,3 +1,4 @@
+import Loader from '@/components/Loader'
 import {
   deleteRegistrationsById,
   fetchAllRegistrations,
@@ -5,81 +6,105 @@ import {
   updateStatusRegistrations
 } from '@/services'
 import { documentIdMask, documentIdValidation } from '@/utils/DocumentIdHelpers'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import Collumns from './components/Columns'
 import SearchBar from './components/Searchbar'
-import * as S from './styles'
+import { Container } from './styles'
 
-export type Props = {
-  id: string
-  status: string
+interface Values {
+  documentId: string
 }
 
-const DashboardPage = () => {
-  const [registrations, setRegistrarion] = useState<any>()
-  const [toggleModal, setToggleModal] = useState(false)
-  const [values, setValues] = useState({ documentId: '' })
+const DashboardPage: React.FC = () => {
+  const [registrations, setRegistrations] = useState<any>()
+  const [toggleModal, setToggleModal] = useState<boolean>(false)
+  const [values, setValues] = useState<Values>({ documentId: '' })
+  const [loading, setLoading] = useState<boolean>(false)
+
+  const withLoading = async <T,>(func: () => Promise<T>): Promise<T> => {
+    setLoading(true)
+    try {
+      const result = await func()
+      return result
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
-    const fetchDate = async () => {
-      const data = await fetchAllRegistrations()
-
-      setRegistrarion(data)
+    const fetchData = async () => {
+      const data = await withLoading(fetchAllRegistrations)
+      setRegistrations(data)
     }
 
-    fetchDate()
+    fetchData()
   }, [])
 
-  const handleChange = async (event: {
-    target: { name: string; value: string }
-  }) => {
+  const fetchRegistrations = async () => {
+    const data = await withLoading(fetchAllRegistrations)
+    setRegistrations(data)
+  }
+
+  const handleChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setValues((prevFormData) => ({
       ...prevFormData,
       [name]: documentIdMask(value)
     }))
 
-    if (documentIdValidation(value)) {
-      const onlyCard = await fetchRegistrationsByDocumentId(value)
-      setRegistrarion(onlyCard)
-    } else {
-      const data = await fetchAllRegistrations()
-
-      setRegistrarion(data)
+    const fetchAndSetData = async () => {
+      if (documentIdValidation(value)) {
+        const onlyCard = await fetchRegistrationsByDocumentId(value)
+        setRegistrations(onlyCard)
+      } else {
+        const data = await fetchAllRegistrations()
+        setRegistrations(data)
+      }
     }
+
+    await withLoading(fetchAndSetData)
   }
 
-  const submitChangeCardStatus = (id: string, status: string) => {
-    if (id && status !== '') {
-      handleUpdateCard(id, status)
-    } else {
-      handleDeleteCard(id)
+  const submitChangeCardStatus = async (id: string, status: string) => {
+    const handleChangeStatus = async () => {
+      if (id && status !== '') {
+        await handleUpdateCard(id, status)
+      } else {
+        await handleDeleteCard(id)
+      }
+      setToggleModal(!toggleModal)
     }
 
-    setToggleModal(!toggleModal)
+    await withLoading(handleChangeStatus)
   }
 
   const handleDeleteCard = async (id: string) => {
-    const updatedData = await deleteRegistrationsById(id)
-
-    setRegistrarion(updatedData)
+    const updatedData = await withLoading(() => deleteRegistrationsById(id))
+    setRegistrations(updatedData)
   }
 
   const handleUpdateCard = async (id: string, status: string) => {
-    const updatedData = await updateStatusRegistrations(id, status)
-
-    setRegistrarion(updatedData)
+    const updatedData = await withLoading(() =>
+      updateStatusRegistrations(id, status)
+    )
+    setRegistrations(updatedData)
   }
 
   return (
-    <S.Container>
-      <SearchBar values={values.documentId} onChange={handleChange} />
+    <Container>
+      {loading && <Loader />}
+      <SearchBar
+        values={values.documentId}
+        onChange={handleChange}
+        fetchRegistrations={fetchRegistrations}
+      />
       <Collumns
         registrations={registrations}
         handleDeleteCard={handleDeleteCard}
         submitChangeCardStatus={submitChangeCardStatus}
       />
-    </S.Container>
+    </Container>
   )
 }
+
 export default DashboardPage

@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 import { Actions, Container } from './styles'
 import { Props } from './types'
 
-const SearchBar = ({ values, onChange }: Props) => {
+const SearchBar = ({ values, onChange, fetchRegistrations }: Props) => {
   const history = useHistory()
 
   const goToNewAdmissionPage = () => {
@@ -25,7 +25,7 @@ const SearchBar = ({ values, onChange }: Props) => {
       />
       <Actions>
         <IconButton aria-label="refetch">
-          <HiRefresh />
+          <HiRefresh onClick={fetchRegistrations} />
         </IconButton>
         <Button onClick={() => goToNewAdmissionPage()}>Nova Admissão</Button>
       </Actions>
