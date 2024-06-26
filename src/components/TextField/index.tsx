@@ -21,7 +21,7 @@ const TextField = ({
         placeholder={placeholder}
         type={type}
       />
-      <span style={{ fontSize: 12, color: 'red' }}>{error}</span>
+      {error && <span style={{ fontSize: 12, color: 'red' }}>{error}</span>}
     </div>
   )
 }

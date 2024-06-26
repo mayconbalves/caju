@@ -3,16 +3,16 @@ import { IconButton } from '@/components/Buttons/IconButton'
 import TextField from '@/components/TextField'
 import routes from '@/router/routes'
 import { newUserRegistrations } from '@/services'
-import { useState } from 'react'
+import { documentIdMask, documentIdValidation } from '@/utils/DocumentIdHelpers'
+import { validateEmail } from '@/utils/EmailValidator'
+import { validateEmployeeName } from '@/utils/EmployeeNameValidator'
+import React, { useState } from 'react'
 import { HiOutlineArrowLeft } from 'react-icons/hi'
 import { useHistory } from 'react-router-dom'
 import { Card, Container } from './styles'
 
 const NewUserPage = () => {
   const history = useHistory()
-  const goToHome = () => {
-    history.push(routes.dashboard)
-  }
 
   const [values, setValues] = useState({
     employeeName: '',
@@ -21,20 +21,76 @@ const NewUserPage = () => {
     admissionDate: ''
   })
 
-  const handleChange = (event: { target: { name: string; value: string } }) => {
+  const [fieldErrors, setFieldErrors] = useState({
+    employeeName: { error: false, message: '' },
+    email: { error: false, message: '' },
+    documentId: { error: false, message: '' },
+    admissionDate: { error: false, message: '' }
+  })
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
-    setValues((prevFormData) => ({ ...prevFormData, [name]: value }))
+    setValues((prevValues) => ({ ...prevValues, [name]: value }))
+    if (name === 'employeeName') {
+      if (!validateEmployeeName(value)) {
+        setFieldErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: {
+            error: true,
+            message: 'O nome precisa ter pelo menos 2 letras e um espaço.'
+          }
+        }))
+      } else {
+        setFieldErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: { error: false, message: '' }
+        }))
+      }
+    } else if (name === 'email') {
+      if (!validateEmail(value)) {
+        setFieldErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: { error: true, message: 'E-mail inválido.' }
+        }))
+      } else {
+        setFieldErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: { error: false, message: '' }
+        }))
+      }
+    } else if (name === 'documentId') {
+      if (!documentIdValidation(value)) {
+        setFieldErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: { error: true, message: 'CPF inválido.' }
+        }))
+      } else {
+        setFieldErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: { error: false, message: '' }
+        }))
+      }
+    }
   }
 
   const handleSubmit = () => {
-    newUserRegistrations(values)
-    goToHome()
+    if (
+      !fieldErrors.employeeName.error &&
+      !fieldErrors.email.error &&
+      !fieldErrors.documentId.error
+    ) {
+      newUserRegistrations(values)
+      history.push(routes.dashboard)
+    }
   }
 
   return (
     <Container>
       <Card>
-        <IconButton onClick={() => goToHome()} aria-label="back">
+        <IconButton
+          onClick={() => history.push(routes.dashboard)}
+          aria-label="back"
+        >
           <HiOutlineArrowLeft size={24} />
         </IconButton>
         <TextField
@@ -43,6 +99,11 @@ const NewUserPage = () => {
           name="employeeName"
           value={values.employeeName}
           onChange={handleChange}
+          error={
+            fieldErrors.employeeName.error
+              ? fieldErrors.employeeName.message
+              : ''
+          }
         />
         <TextField
           placeholder="Email"
@@ -51,13 +112,17 @@ const NewUserPage = () => {
           type="email"
           value={values.email}
           onChange={handleChange}
+          error={fieldErrors.email.error ? fieldErrors.email.message : ''}
         />
         <TextField
           placeholder="CPF"
           label="CPF"
           name="documentId"
-          value={values.documentId}
+          value={documentIdMask(values.documentId)}
           onChange={handleChange}
+          error={
+            fieldErrors.documentId.error ? fieldErrors.documentId.message : ''
+          }
         />
         <TextField
           label="Data de admissão"
@@ -65,6 +130,11 @@ const NewUserPage = () => {
           type="date"
           value={values.admissionDate}
           onChange={handleChange}
+          error={
+            fieldErrors.admissionDate.error
+              ? fieldErrors.admissionDate.message
+              : ''
+          }
         />
         <Button onClick={handleSubmit}>Cadastrar</Button>
       </Card>
