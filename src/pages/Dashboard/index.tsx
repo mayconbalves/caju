@@ -1,4 +1,5 @@
 import Loader from '@/components/Loader'
+import Toast from '@/components/Toast'
 import {
   deleteRegistrationsById,
   fetchAllRegistrations,
@@ -7,7 +8,7 @@ import {
 } from '@/services'
 import { documentIdMask, documentIdValidation } from '@/utils/DocumentIdHelpers'
 import { ChangeEvent, useEffect, useState } from 'react'
-import Collumns from './components/Columns'
+import Columns from './components/Columns'
 import SearchBar from './components/Searchbar'
 import { Container } from './styles'
 
@@ -20,6 +21,7 @@ const DashboardPage: React.FC = () => {
   const [toggleModal, setToggleModal] = useState<boolean>(false)
   const [values, setValues] = useState<Values>({ documentId: '' })
   const [loading, setLoading] = useState<boolean>(false)
+  const [toast, setToast] = useState({ error: false, message: '' })
 
   const withLoading = async <T,>(func: () => Promise<T>): Promise<T> => {
     setLoading(true)
@@ -67,10 +69,12 @@ const DashboardPage: React.FC = () => {
 
   const submitChangeCardStatus = async (id: string, status: string) => {
     const handleChangeStatus = async () => {
-      if (id && status !== 'Excluir') {
+      if (id && status !== '') {
         await handleUpdateCard(id, status)
+        setToast({ error: false, message: 'Status atualizado com sucesso.' })
       } else {
         await handleDeleteCard(id)
+        setToast({ error: false, message: 'Status atualizado com sucesso.' })
       }
       setToggleModal(!toggleModal)
     }
@@ -79,26 +83,43 @@ const DashboardPage: React.FC = () => {
   }
 
   const handleDeleteCard = async (id: string) => {
-    const updatedData = await withLoading(() => deleteRegistrationsById(id))
-    setRegistrations(updatedData)
+    try {
+      const updatedData = await withLoading(() => deleteRegistrationsById(id))
+      setRegistrations(updatedData)
+      setToast({ error: false, message: 'Registro deletado com sucesso.' })
+    } catch (error) {
+      console.error('Erro ao deletar registro:', error)
+      setToast({ error: true, message: 'Erro ao deletar registro.' })
+    }
   }
 
   const handleUpdateCard = async (id: string, status: string) => {
-    const updatedData = await withLoading(() =>
-      updateStatusRegistrations(id, status)
-    )
-    setRegistrations(updatedData)
+    try {
+      const updatedData = await withLoading(() =>
+        updateStatusRegistrations(id, status)
+      )
+      setRegistrations(updatedData)
+      setToast({ error: false, message: 'Status atualizado com sucesso.' })
+    } catch (error) {
+      console.error('Erro ao atualizar status:', error)
+      setToast({ error: true, message: 'Erro ao atualizar status.' })
+    }
+  }
+
+  const closeToast = () => {
+    setToast({ error: false, message: '' })
   }
 
   return (
     <Container>
       {loading && <Loader />}
+      {toast.message && <Toast toast={toast} close={closeToast} />}
       <SearchBar
         values={values.documentId}
         onChange={handleChange}
         fetchRegistrations={fetchRegistrations}
       />
-      <Collumns
+      <Columns
         registrations={registrations}
         submitChangeCardStatus={submitChangeCardStatus}
       />
