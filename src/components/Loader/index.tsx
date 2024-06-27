@@ -2,9 +2,9 @@ import { Container, Spinner, Title } from './styles'
 
 const Loader = () => {
   return (
-    <Container>
-      <Spinner />
-      <Title>Carregando</Title>
+    <Container data-testid="loader-container">
+      <Spinner data-testid="loader-spinner" />
+      <Title data-testid="loader-title">Carregando</Title>
     </Container>
   )
 }

@@ -3,12 +3,10 @@ export const validateEmployeeName = (name: string): boolean => {
     return false
   }
 
-  // Verifica se o name contém pelo menos duas letras
   if (!/[a-zA-Z].*[a-zA-Z]/.test(name)) {
     return false
   }
 
-  // Verifica se a primeira letra não é um número
   if (/^\d/.test(name)) {
     return false
   }

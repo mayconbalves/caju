@@ -75,7 +75,6 @@ const NewUserPage = () => {
   }
 
   const handleSubmit = () => {
-    console.log('Submit')
     if (
       !fieldErrors.employeeName.error &&
       !fieldErrors.email.error &&

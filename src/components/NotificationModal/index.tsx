@@ -7,25 +7,38 @@ import {
   ModalTitle
 } from './styles'
 
+import { Props } from './types'
+
 const NotificationModal = ({
   setToggleModal,
   submitChangeCardStatus,
   values
-}: any) => {
+}: Props) => {
   return (
     <Modal>
-      <ModalContent>
-        <CloseIcon onClick={() => setToggleModal(false)}>X</CloseIcon>
+      <ModalContent data-testid="notification-modal">
+        <CloseIcon
+          data-testid="close-icon"
+          onClick={() => setToggleModal(false)}
+        >
+          X
+        </CloseIcon>
         <main>
           <ModalTitle>Deseja confirmar essa ação?</ModalTitle>
           <hr />
           <ModalFooter>
             <Button
+              data-testid="confirm-button"
               onClick={() => submitChangeCardStatus(values.id, values.status)}
             >
               Confirmar
             </Button>
-            <Button onClick={() => setToggleModal(false)}>Cancelar</Button>
+            <Button
+              data-testid="cancel-button"
+              onClick={() => setToggleModal(false)}
+            >
+              Cancelar
+            </Button>
           </ModalFooter>
         </main>
       </ModalContent>
