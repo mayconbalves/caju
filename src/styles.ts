@@ -14,9 +14,9 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   padding: 0px 24px;
+`
 
-  h1 {
-    color: #fff;
-    font-size: 24px;
-  }
+export const Title = styled.h1`
+  color: #fff;
+  font-size: 24px;
 `

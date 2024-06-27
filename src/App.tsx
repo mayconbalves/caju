@@ -1,11 +1,11 @@
 import Router from '@/router'
-import { Header } from './components/Header'
+import { Header, Title } from './styles'
 
 function App() {
   return (
     <>
       <Header>
-        <h1>Caju Front Teste</h1>
+        <Title>Caju Front Teste</Title>
       </Header>
       <Router />
     </>

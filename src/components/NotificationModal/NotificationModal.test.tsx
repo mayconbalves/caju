@@ -17,23 +17,23 @@ describe('NotificationModal Component', () => {
     )
   })
 
-  test('renders the modal component', () => {
+  it('renders the modal component', () => {
     const modal = screen.getByTestId('notification-modal')
     expect(modal).toBeInTheDocument()
   })
 
-  test('renders the title correctly', () => {
+  it('renders the title correctly', () => {
     const title = screen.getByText('Deseja confirmar essa ação?')
     expect(title).toBeInTheDocument()
   })
 
-  test('calls setToggleModal with false when close icon is clicked', () => {
+  it('calls setToggleModal with false when close icon is clicked', () => {
     const closeIcon = screen.getByTestId('close-icon')
     fireEvent.click(closeIcon)
     expect(mockSetToggleModal).toHaveBeenCalledWith(false)
   })
 
-  test('calls submitChangeCardStatus with correct values when confirm button is clicked', () => {
+  it('calls submitChangeCardStatus with correct values when confirm button is clicked', () => {
     const confirmButton = screen.getByTestId('confirm-button')
     fireEvent.click(confirmButton)
     expect(mockSubmitChangeCardStatus).toHaveBeenCalledWith(

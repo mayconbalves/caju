@@ -13,17 +13,17 @@ describe('Toast Component', () => {
     render(<Toast {...props} />)
   })
 
-  test('Should be renders the toast message correctly', () => {
+  it('Should be renders the toast message correctly', () => {
     const message = screen.getByText('Test Message')
     expect(message).toBeInTheDocument()
   })
 
-  test('Should be renders the close button correctly', () => {
+  it('Should be renders the close button correctly', () => {
     const closeButton = screen.getByText('x')
     expect(closeButton).toBeInTheDocument()
   })
 
-  test('Should be calls close function when close button is clicked', () => {
+  it('Should be calls close function when close button is clicked', () => {
     const closeButton = screen.getByText('x')
     fireEvent.click(closeButton)
     expect(mockClose).toHaveBeenCalled()

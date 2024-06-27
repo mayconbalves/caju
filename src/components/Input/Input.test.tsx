@@ -19,27 +19,27 @@ describe('Input Component', () => {
     }
   }
 
-  test('renders the input component', () => {
+  it('renders the input component', () => {
     setup()
     const inputElement = screen.getByTestId('input')
     expect(inputElement).toBeInTheDocument()
   })
 
-  test('renders with the correct placeholder', () => {
+  it('renders with the correct placeholder', () => {
     const placeholderText = 'Test Placeholder'
     setup({ placeholder: placeholderText })
     const inputElement = screen.getByTestId('input')
     expect(inputElement).toHaveAttribute('placeholder', placeholderText)
   })
 
-  test('renders with the correct value', () => {
+  it('renders with the correct value', () => {
     const valueText = 'Test Value'
     setup({ value: valueText })
     const inputElement = screen.getByTestId('input')
     expect(inputElement).toHaveValue(valueText)
   })
 
-  test('calls onChange handler when the input value changes', () => {
+  it('calls onChange handler when the input value changes', () => {
     const handleChange = jest.fn()
     setup({ onChange: handleChange })
     const inputElement = screen.getByTestId('input')

@@ -19,13 +19,13 @@ describe('TextField Component', () => {
     render(<TextField {...props} />)
   })
 
-  test('renders the label correctly', () => {
+  it('renders the label correctly', () => {
     const label = screen.getByText('Test Label')
     expect(label).toBeInTheDocument()
     expect(label).toHaveAttribute('for', 'test-id')
   })
 
-  test('renders the input correctly', () => {
+  it('renders the input correctly', () => {
     const input = screen.getByPlaceholderText(
       'Test Placeholder'
     ) as HTMLInputElement
@@ -35,13 +35,13 @@ describe('TextField Component', () => {
     expect(input).toHaveAttribute('type', 'text')
   })
 
-  test('renders the error message correctly', () => {
+  it('renders the error message correctly', () => {
     const errorMessage = screen.getByText('Error message')
     expect(errorMessage).toBeInTheDocument()
     expect(errorMessage).toHaveStyle({ fontSize: '12px', color: 'red' })
   })
 
-  test('calls onChange when input value changes', () => {
+  it('calls onChange when input value changes', () => {
     const input = screen.getByPlaceholderText(
       'Test Placeholder'
     ) as HTMLInputElement
