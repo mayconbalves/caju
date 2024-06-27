@@ -25,7 +25,7 @@ jobs:
         run: yarn install
 
       - name: Run Tests
-        run: yarn test:dev
+        run: yarn test
 
   deploy:
     name: Build and Deploy
