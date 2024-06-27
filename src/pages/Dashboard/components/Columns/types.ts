@@ -9,6 +9,5 @@ type Registration = {
 
 export type Props = {
   registrations?: [Registration]
-  handleDeleteCard: (id: string) => void
   submitChangeCardStatus: (id: string, status: string) => void
 }

@@ -9,11 +9,7 @@ const allColumns = [
 
 import { Props } from './types'
 
-const Collumns = ({
-  registrations,
-  handleDeleteCard,
-  submitChangeCardStatus
-}: Props) => {
+const Collumns = ({ registrations, submitChangeCardStatus }: Props) => {
   return (
     <Container>
       {allColumns.map((column) => {
@@ -34,7 +30,6 @@ const Collumns = ({
                     employeeName={registration.employeeName}
                     status={registration.status}
                     key={registration.id}
-                    handleDeleteCard={handleDeleteCard}
                     submitChangeCardStatus={submitChangeCardStatus}
                   />
                 )

@@ -67,7 +67,7 @@ const DashboardPage: React.FC = () => {
 
   const submitChangeCardStatus = async (id: string, status: string) => {
     const handleChangeStatus = async () => {
-      if (id && status !== '') {
+      if (id && status !== 'Excluir') {
         await handleUpdateCard(id, status)
       } else {
         await handleDeleteCard(id)
@@ -100,7 +100,6 @@ const DashboardPage: React.FC = () => {
       />
       <Collumns
         registrations={registrations}
-        handleDeleteCard={handleDeleteCard}
         submitChangeCardStatus={submitChangeCardStatus}
       />
     </Container>

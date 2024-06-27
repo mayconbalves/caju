@@ -16,8 +16,7 @@ const RegistrationCard = ({
   admissionDate,
   status,
   id,
-  submitChangeCardStatus,
-  handleDeleteCard
+  submitChangeCardStatus
 }: Props) => {
   const [values, setValues] = useState<{ id: string; status: string }>({
     id: '',
@@ -82,7 +81,7 @@ const RegistrationCard = ({
               Revisar novamente
             </ButtonSmall>
           )}
-          <HiOutlineTrash onClick={() => handleDeleteCard(id)} />
+          <HiOutlineTrash onClick={() => changeCardStatus(id, 'Excluir')} />
         </Actions>
       </Card>
     </>

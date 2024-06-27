@@ -31,6 +31,7 @@ const NewUserPage = () => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setValues((prevValues) => ({ ...prevValues, [name]: value }))
+
     if (name === 'employeeName') {
       if (!validateEmployeeName(value)) {
         setFieldErrors((prevErrors) => ({
@@ -74,15 +75,23 @@ const NewUserPage = () => {
   }
 
   const handleSubmit = () => {
+    console.log('Submit')
     if (
       !fieldErrors.employeeName.error &&
       !fieldErrors.email.error &&
-      !fieldErrors.documentId.error
+      !fieldErrors.documentId.error &&
+      values.employeeName &&
+      values.email &&
+      values.documentId
     ) {
       newUserRegistrations(values)
       history.push(routes.dashboard)
     }
   }
+
+  const hasErrors = Object.values(fieldErrors).some((field) => field.error)
+  const areRequiredFieldsEmpty =
+    !values.employeeName || !values.email || !values.documentId
 
   return (
     <Container>
@@ -136,7 +145,12 @@ const NewUserPage = () => {
               : ''
           }
         />
-        <Button onClick={handleSubmit}>Cadastrar</Button>
+        <Button
+          onClick={handleSubmit}
+          disabled={hasErrors || areRequiredFieldsEmpty}
+        >
+          Cadastrar
+        </Button>
       </Card>
     </Container>
   )

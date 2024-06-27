@@ -1,14 +1,18 @@
 import styled from 'styled-components'
 
-const Button = styled.button`
+export type ButtonProps = {
+  disabled?: boolean
+}
+
+const Button = styled.button<ButtonProps>`
   outline: none;
   display: flex;
   align-items: center;
   border: none;
   border-radius: 36px;
   padding: 8px 32px;
-  background-color: #64a98c;
-  cursor: pointer;
+  background-color: ${({ disabled }) => (disabled ? '#eee' : '#64a98c')};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   height: 56px;
   color: #fff;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;

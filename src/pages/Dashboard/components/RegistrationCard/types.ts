@@ -4,6 +4,5 @@ export type Props = {
   employeeName: string
   status: string
   id: string
-  handleDeleteCard: (id: string) => void
   submitChangeCardStatus: (id: string, status: string) => void
 }
