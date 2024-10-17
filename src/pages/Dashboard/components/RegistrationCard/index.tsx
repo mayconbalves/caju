@@ -1,14 +1,16 @@
+import {
+  HiOutlineCalendar,
+  HiOutlineMail,
+  HiOutlineTrash,
+  HiOutlineUser,
+} from "react-icons/hi";
 import { ButtonSmall } from "~/components/Buttons";
 import * as S from "./styles";
-import {
-  HiOutlineMail,
-  HiOutlineUser,
-  HiOutlineCalendar,
-  HiOutlineTrash,
-} from "react-icons/hi";
 
 type Props = {
   data: any;
+  onDelete: () => void;
+  onUpdate: (registration: any, status: string) => void;
 };
 
 const RegistrationCard = (props: Props) => {
@@ -27,11 +29,26 @@ const RegistrationCard = (props: Props) => {
         <span>{props.data.admissionDate}</span>
       </S.IconAndText>
       <S.Actions>
-        <ButtonSmall bgcolor="rgb(255, 145, 154)" >Reprovar</ButtonSmall>
-        <ButtonSmall bgcolor="rgb(155, 229, 155)">Aprovar</ButtonSmall>
-        <ButtonSmall bgcolor="#ff8858">Revisar novamente</ButtonSmall>
+        <ButtonSmall
+          bgcolor="rgb(255, 145, 154)"
+          onClick={() => props.onUpdate(props.data, "REPROVED")}
+        >
+          Reprovar
+        </ButtonSmall>
+        <ButtonSmall
+          bgcolor="rgb(155, 229, 155)"
+          onClick={() => props.onUpdate(props.data, "APPROVED")}
+        >
+          Aprovar
+        </ButtonSmall>
+        <ButtonSmall
+          bgcolor="#ff8858"
+          onClick={() => props.onUpdate(props.data, "REVIEW")}
+        >
+          Revisar novamente
+        </ButtonSmall>
 
-        <HiOutlineTrash />
+        <HiOutlineTrash onClick={props.onDelete} />
       </S.Actions>
     </S.Card>
   );
