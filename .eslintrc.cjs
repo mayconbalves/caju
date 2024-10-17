@@ -27,6 +27,7 @@ module.exports = {
     "react/display-name": "off",
     "@typescript-eslint/ban-types": "off",
     "import/named": "off",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    'max-len': ["error", { "code": 100, "tabWidth": 4 }]
   },
 };
