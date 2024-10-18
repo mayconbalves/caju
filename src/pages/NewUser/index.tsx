@@ -1,13 +1,13 @@
-import { useState } from "react"
-import { HiOutlineArrowLeft } from "react-icons/hi"
-import { useHistory } from "react-router-dom"
-import Button from "~/components/Buttons"
-import { IconButton } from "~/components/Buttons/IconButton"
-import TextField from "~/components/TextField"
-import routes from "~/router/routes"
-import { createNewUser } from "~/services/new-user"
-import * as S from "./styles"
-
+import { useState } from 'react'
+import { HiOutlineArrowLeft } from 'react-icons/hi'
+import { useHistory } from 'react-router-dom'
+import Button from '~/components/Buttons'
+import { IconButton } from '~/components/Buttons/IconButton'
+import TextField from '~/components/TextField'
+import routes from '~/router/routes'
+import { createNewUser } from '~/services/new-user'
+import { cpfMask } from '~/utils/cpf-mask'
+import * as S from './styles'
 
 const NewUserPage = () => {
   const history = useHistory()
@@ -29,7 +29,7 @@ const NewUserPage = () => {
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
+      [name]: value
     }))
   }
 
@@ -63,7 +63,7 @@ const NewUserPage = () => {
           placeholder="CPF"
           label="CPF"
           name="documentId"
-          value={formData.documentId}
+          value={cpfMask(formData.documentId)}
           onChange={handleInputChange}
         />
         <TextField

@@ -5,10 +5,11 @@ import Button from '~/components/Buttons'
 import { IconButton } from '~/components/Buttons/IconButton'
 import TextField from '~/components/TextField'
 import routes from '~/router/routes'
+import { cpfMask } from '~/utils/cpf-mask'
 import * as S from './styles'
 
 type Props = {
-  onSearch: (cpf: string) => void
+  onSearch: (documentId: string) => void
 }
 
 export const SearchBar = ({ onSearch }: Props) => {
@@ -35,7 +36,7 @@ export const SearchBar = ({ onSearch }: Props) => {
         placeholder="Digite um CPF válido"
         name="documentId"
         onChange={handleInputChange}
-        value={documentId}
+        value={cpfMask(documentId)}
       />
       <S.Actions>
         <IconButton aria-label="refetch">

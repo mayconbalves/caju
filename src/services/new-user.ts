@@ -6,7 +6,7 @@ export const createNewUser = (params: any) => {
   }
 
   axios
-    .post('http://localhost:3000/registrations', params, {
+    .post(`${import.meta.env.VITE_API_URL}/registrations`, params, {
       headers
     })
     .then((response) => console.log(response))
