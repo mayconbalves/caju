@@ -1,48 +1,47 @@
-import RegistrationCard from "../RegistrationCard";
-import * as S from "./styles";
+import RegistrationCard from '../RegistrationCard'
+import * as S from './styles'
 
 const allColumns = [
-  { status: 'REVIEW', title: "Pronto para revisar" },
-  { status: 'APPROVED', title: "Aprovado" },
-  { status: 'REPROVED', title: "Reprovado" },
-];
+  { status: 'REVIEW', title: 'Pronto para revisar' },
+  { status: 'APPROVED', title: 'Aprovado' },
+  { status: 'REPROVED', title: 'Reprovado' }
+]
 
 type Props = {
-  registrations?: any[];
-  onDelete: (id: string) => void;
-  onUpdate: (registration: any, status: string) => void; // Corrigido: função aceita os parâmetros
-};
+  registrations?: any[]
+  onDelete: (id: string) => void
+  onUpdate: (registration: any, status: string) => void
+}
 
 const Collumns = (props: Props) => {
   return (
     <S.Container>
       {allColumns.map((column) => {
-        const filteredRegistrations = props?.registrations?.filter(
+        const filteredRegistrations: any = props?.registrations?.filter(
           (registration) => registration.status === column.status
-        );
+        )
 
         return (
           <S.Column status={column.status} key={column.title}>
             <>
-              <S.TitleColumn status={column.status}>
-                {column.title}
-              </S.TitleColumn>
+              <S.TitleColumn status={column.status}>{column.title}</S.TitleColumn>
               <S.CollumContent>
-                {filteredRegistrations?.map((registration) => (
-                  <RegistrationCard
-                    data={registration}
-                    key={registration.id}
-                    onDelete={() => props.onDelete(registration.id)}
-                    onUpdate={props.onUpdate} // Passando a função de update
-                  />
-                ))}
+                {filteredRegistrations.length > 0 &&
+                  filteredRegistrations?.map((registration: any) => (
+                    <RegistrationCard
+                      data={registration}
+                      key={registration.id}
+                      onDelete={() => props.onDelete(registration.id)}
+                      onUpdate={props.onUpdate}
+                    />
+                  ))}
               </S.CollumContent>
             </>
           </S.Column>
-        );
+        )
       })}
     </S.Container>
-  );
-};
+  )
+}
 
-export default Collumns;
+export default Collumns
