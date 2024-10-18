@@ -7,8 +7,10 @@ module.exports = {
     "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/recommended",
     "eslint-config-prettier",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "prettier"
   ],
+  plugins: ['prettier', '@typescript-eslint', 'react', 'react-hooks'],
   settings: {
     react: {
       version: "detect",
@@ -28,6 +30,6 @@ module.exports = {
     "react/display-name": "off",
     "@typescript-eslint/ban-types": "off",
     "import/named": "off",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "warn"
   },
 };
