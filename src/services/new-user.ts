@@ -1,11 +1,13 @@
-import axios from "axios";
+import axios from 'axios'
 
 export const createNewUser = (params: any) => {
-	const headers = {
-		'Content-Type': 'application/json'
-	}
+  const headers = {
+    'Content-Type': 'application/json'
+  }
 
-	axios.post('http://localhost:3000/registrations', params, {
-		headers
-	}).then(response => console.log(response))
+  axios
+    .post('http://localhost:3000/registrations', params, {
+      headers
+    })
+    .then((response) => console.log(response))
 }
