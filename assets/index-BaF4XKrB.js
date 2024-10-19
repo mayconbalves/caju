@@ -178,11 +178,11 @@ Error generating stack: `+i.message+`
   justify-content: flex-end;
   align-items: center;
   gap: 16px;
-`,qw=({onSearch:e})=>{const t=zh(),[n,r]=ht.useState(""),o=()=>{t.push(Hn.newUser)},i=l=>{const{value:s}=l.target;r(s),s===""||s.length<11?e(""):s.length>10&&e(s)};return $.jsxs(Gw,{children:[$.jsx(Lr,{placeholder:"Digite um CPF válido",name:"documentId",onChange:i,value:hm(n)}),$.jsxs(Yw,{children:[$.jsx(pm,{"aria-label":"refetch",children:$.jsx(Lw,{})}),$.jsx(za,{onClick:()=>o(),children:"Nova Admissão"})]})]})},Xw=ve.div`
+`,qw=({onSearch:e})=>{const t=zh(),[n,r]=ht.useState(""),o=()=>{t.push(Hn.newUser)},i=s=>{const{value:u}=s.target;r(u),u===""||u.length<11?e(""):u.length>10&&e(u)},l=()=>{e(n)};return $.jsxs(Gw,{children:[$.jsx(Lr,{placeholder:"Digite um CPF válido",name:"documentId",onChange:i,value:hm(n)}),$.jsxs(Yw,{children:[$.jsx(pm,{"aria-label":"refetch",onClick:l,children:$.jsx(Lw,{})}),$.jsx(za,{onClick:o,children:"Nova Admissão"})]})]})},Xw=ve.div`
   padding: 24px;
   display: flex;
   flex-direction: column;
-`,Jw=()=>{const[e,t]=ht.useState([]),n=async()=>{try{const l=await Ia();t(l)}catch(l){console.error("Error fetching registrations:",l)}},r=async l=>{if(l==="")n();else try{const s=await kw(l);t(s?[s]:[])}catch(s){console.error("Error fetching registration by CPF:",s)}},o=async l=>{try{await Ew(l),n()}catch(s){console.error("Error deleting registration:",s)}},i=async(l,s)=>{try{await xw(l,s),n()}catch(u){console.error("Error updating registration:",u)}};return ht.useEffect(()=>{n()},[]),$.jsxs(Xw,{children:[$.jsx(qw,{onSearch:r}),$.jsx(Qw,{registrations:e,onDelete:o,onUpdate:i})]})},Zw=e=>{const t={"Content-Type":"application/json"};b.post("http://localhost:3000/registrations",e,{headers:t}).then(n=>console.log(n))},bw=ve.div`
+`,Jw=()=>{const[e,t]=ht.useState([]),n=async()=>{try{const l=await Ia();t(l)}catch(l){console.error("Error fetching registrations:",l)}},r=async l=>{if(l==="")n();else try{const s=await kw(l);t(s)}catch(s){console.error("Error fetching registration by CPF:",s)}},o=async l=>{try{await Ew(l),n()}catch(s){console.error("Error deleting registration:",s)}},i=async(l,s)=>{try{await xw(l,s),n()}catch(u){console.error("Error updating registration:",u)}};return ht.useEffect(()=>{n()},[]),$.jsxs(Xw,{children:[$.jsx(qw,{onSearch:r}),$.jsx(Qw,{registrations:e,onDelete:o,onUpdate:i})]})},Zw=e=>{const t={"Content-Type":"application/json"};b.post("http://localhost:3000/registrations",e,{headers:t}).then(n=>console.log(n))},bw=ve.div`
   display: flex;
   align-items: center;
   justify-content: center;
