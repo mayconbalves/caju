@@ -21,17 +21,13 @@ const DashboardPage = () => {
     }
   }
 
-  const fetchRegistrationByCPF = async (cpf: string) => {
-    if (cpf === '') {
+  const handleSearchByCpf = async (documentId: string) => {
+    if (documentId === '') {
       fetchAllRegisters()
     } else {
       try {
-        const registration = await getRegistrationByDocumentId(cpf)
-        if (registration) {
-          setRegistrations([registration])
-        } else {
-          setRegistrations([])
-        }
+        const data = await getRegistrationByDocumentId(documentId)
+        setRegistrations(data)
       } catch (error) {
         console.error('Error fetching registration by CPF:', error)
       }
@@ -62,7 +58,7 @@ const DashboardPage = () => {
 
   return (
     <S.Container>
-      <SearchBar onSearch={fetchRegistrationByCPF} />
+      <SearchBar onSearch={handleSearchByCpf} />
       <Collumns
         registrations={registrations}
         onDelete={handleDeleteRegister}

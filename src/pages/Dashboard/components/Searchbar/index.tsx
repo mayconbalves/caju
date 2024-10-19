@@ -30,6 +30,10 @@ export const SearchBar = ({ onSearch }: Props) => {
     }
   }
 
+  const handleRefreshClick = () => {
+    onSearch(documentId)
+  }
+
   return (
     <S.Container>
       <TextField
@@ -39,10 +43,10 @@ export const SearchBar = ({ onSearch }: Props) => {
         value={cpfMask(documentId)}
       />
       <S.Actions>
-        <IconButton aria-label="refetch">
+        <IconButton aria-label="refetch" onClick={handleRefreshClick}>
           <HiRefresh />
         </IconButton>
-        <Button onClick={() => goToNewAdmissionPage()}>Nova Admissão</Button>
+        <Button onClick={goToNewAdmissionPage}>Nova Admissão</Button>
       </S.Actions>
     </S.Container>
   )
