@@ -6,7 +6,7 @@ import { IconButton } from '~/components/Buttons/IconButton'
 import TextField from '~/components/TextField'
 import routes from '~/router/routes'
 import { createNewUser } from '~/services/new-user'
-import { cpfMask } from '~/utils/cpf-mask'
+import { cpfMask, isValidCPF, isValidEmail, isValidEmployeeName } from '~/utils'
 import * as S from './styles'
 
 const NewUserPage = () => {
@@ -26,6 +26,24 @@ const NewUserPage = () => {
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target
+
+    if (name === 'employeeName') {
+      if (!isValidEmployeeName(value)) {
+        console.log('Nome inválido.')
+      }
+    }
+
+    if (name === 'documentId') {
+      if (!isValidCPF(value)) {
+        console.log('Cpf inválido.')
+      }
+    }
+
+    if (name === 'email') {
+      if (!isValidEmail(value)) {
+        console.log('Email inválido.')
+      }
+    }
 
     setFormData((prevFormData) => ({
       ...prevFormData,
