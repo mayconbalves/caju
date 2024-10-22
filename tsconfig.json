@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
+    "types": [
+      "@testing-library/jest-dom"
+    ],
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": [
