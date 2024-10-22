@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import Button from '~/components/Buttons'
+import { Button } from '~/components/Buttons'
 import ConfirmationModal from '~/components/ConfirmModal'
 import Loader from '~/components/Loader'
 import TextField from '~/components/TextField'
+import { useToast } from '~/contexts/Toast/useToast'
 import routes from '~/router/routes'
 import { createNewUser } from '~/services/new-user'
 import { cpfMask } from '~/utils'
@@ -21,8 +22,8 @@ const NewUserForm = () => {
     admissionDate: '',
     status: 'REVIEW'
   })
-
   const [errors, setErrors] = useState<FormErrors>({})
+  const { showToast } = useToast()
 
   const goToHome = () => {
     history.push(routes.dashboard)
@@ -30,7 +31,6 @@ const NewUserForm = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value
@@ -62,9 +62,10 @@ const NewUserForm = () => {
 
     try {
       await createNewUser(formData)
+      showToast('Usuário criado com sucesso!', 'success')
       goToHome()
-    } catch (error) {
-      console.error('Error creating new user:', error)
+    } catch {
+      showToast('Erro ao criar o usuário.', 'error')
     } finally {
       setLoad(false)
     }

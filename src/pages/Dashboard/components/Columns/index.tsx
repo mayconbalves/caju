@@ -20,7 +20,7 @@ const Columns = (props: Props) => {
           <S.Column status={column.status} key={column.title}>
             <S.TitleColumn status={column.status}>{column.title}</S.TitleColumn>
             <S.CollumContent>
-              {filteredRegistrations.length > 0 ? (
+              {filteredRegistrations.length > 0 &&
                 filteredRegistrations.map((registration: any) => (
                   <RegistrationCard
                     data={registration}
@@ -28,10 +28,7 @@ const Columns = (props: Props) => {
                     onDelete={() => props.onDelete(registration.id)}
                     onUpdate={props.onUpdate}
                   />
-                ))
-              ) : (
-                <p>Nenhum registro encontrado para este status.</p>
-              )}
+                ))}
             </S.CollumContent>
           </S.Column>
         )

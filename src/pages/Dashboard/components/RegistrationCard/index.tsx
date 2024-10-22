@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { HiOutlineCalendar, HiOutlineMail, HiOutlineTrash, HiOutlineUser } from 'react-icons/hi'
-import { ButtonSmall } from '~/components/Buttons'
+import { SmallButton } from '~/components/Buttons'
 import ConfirmationModal from '~/components/ConfirmModal'
 import * as S from './styles'
 
@@ -42,7 +42,7 @@ const RegistrationCard = (props: Props) => {
       <S.Actions>
         {props.data.status === 'REVIEW' && (
           <>
-            <ButtonSmall
+            <SmallButton
               bgcolor="rgb(255, 145, 154)"
               onClick={() =>
                 handleOpenModal(
@@ -52,8 +52,8 @@ const RegistrationCard = (props: Props) => {
               }
             >
               Reprovar
-            </ButtonSmall>
-            <ButtonSmall
+            </SmallButton>
+            <SmallButton
               bgcolor="rgb(155, 229, 155)"
               onClick={() =>
                 handleOpenModal(
@@ -63,12 +63,12 @@ const RegistrationCard = (props: Props) => {
               }
             >
               Aprovar
-            </ButtonSmall>
+            </SmallButton>
           </>
         )}
 
         {['REPROVED', 'APPROVED'].includes(props.data.status) && (
-          <ButtonSmall
+          <SmallButton
             bgcolor="#ff8858"
             onClick={() =>
               handleOpenModal(
@@ -78,7 +78,7 @@ const RegistrationCard = (props: Props) => {
             }
           >
             Revisar novamente
-          </ButtonSmall>
+          </SmallButton>
         )}
 
         <HiOutlineTrash

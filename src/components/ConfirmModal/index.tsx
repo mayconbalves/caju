@@ -1,13 +1,8 @@
+import { Button } from '~/components/Buttons'
 import * as S from './styles'
+import { ConfirmModalProps } from './types'
 
-type Props = {
-  isOpen: boolean
-  message: string
-  onConfirm: () => void
-  onCancel: () => void
-}
-
-const ConfirmationModal = ({ isOpen, message, onConfirm, onCancel }: Props) => {
+const ConfirmationModal = ({ isOpen, message, onConfirm, onCancel }: ConfirmModalProps) => {
   if (!isOpen) return null
 
   return (
@@ -15,8 +10,8 @@ const ConfirmationModal = ({ isOpen, message, onConfirm, onCancel }: Props) => {
       <S.ModalContent>
         <p>{message}</p>
         <S.Actions>
-          <button onClick={onConfirm}>Confirmar</button>
-          <button onClick={onCancel}>Cancelar</button>
+          <Button onClick={onConfirm}>Confirmar</Button>
+          <Button onClick={onCancel}>Cancelar</Button>
         </S.Actions>
       </S.ModalContent>
     </S.ModalOverlay>

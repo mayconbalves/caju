@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Loader from '~/components/Loader'
+import { useToast } from '~/contexts/Toast/useToast'
 import {
   deleteRegister,
   getAllRegisters,
@@ -13,23 +14,25 @@ import * as S from './styles'
 const DashboardPage = () => {
   const [registrations, setRegistrations] = useState<any[]>([])
   const [load, setLoad] = useState<boolean>(false)
+  const { showToast } = useToast()
 
-  const fetchAllRegisters = async () => {
+  const fetchAllRegisters = useCallback(async () => {
     setLoad(true)
     try {
       const data = await getAllRegisters()
       if (Array.isArray(data)) {
         setRegistrations(data)
+        showToast('Registros carregados com sucesso!', 'success')
       } else {
-        console.error('Expected data to be an array:', data)
         setRegistrations([])
+        showToast('Erro ao carregar registros.', 'error')
       }
-    } catch (error) {
-      console.error('Error fetching registrations:', error)
+    } catch {
+      showToast('Erro ao carregar registros.', 'error')
     } finally {
       setLoad(false)
     }
-  }
+  }, [showToast])
 
   const handleSearchByCpf = async (documentId: string) => {
     if (documentId === '') {
@@ -39,8 +42,9 @@ const DashboardPage = () => {
       try {
         const data = await getRegistrationByDocumentId(documentId)
         setRegistrations(data)
-      } catch (error) {
-        console.error('Error fetching registration by CPF:', error)
+        showToast('Busca por CPF realizada com sucesso!', 'success')
+      } catch {
+        showToast('Erro ao buscar CPF.', 'error')
       } finally {
         setLoad(false)
       }
@@ -49,25 +53,31 @@ const DashboardPage = () => {
 
   const handleDeleteRegister = async (id: string) => {
     try {
-      await deleteRegister(id)
-      fetchAllRegisters()
-    } catch (error) {
-      console.error('Error deleting registration:', error)
+      const success = await deleteRegister(id)
+      if (success) {
+        fetchAllRegisters()
+        showToast('Registro deletado com sucesso!', 'success')
+      }
+    } catch {
+      showToast('Erro ao deletar registro.', 'error')
     }
   }
 
   const handleUpdateRegister = async (registration: any, status: string) => {
     try {
-      await updateRegistrationStatus(registration, status)
-      fetchAllRegisters()
-    } catch (error) {
-      console.error('Error updating registration:', error)
+      const success = await updateRegistrationStatus(registration, status)
+      if (success) {
+        fetchAllRegisters()
+        showToast('Status atualizado com sucesso!', 'success')
+      }
+    } catch {
+      showToast('Erro ao atualizar status.', 'error')
     }
   }
 
   useEffect(() => {
     fetchAllRegisters()
-  }, [])
+  }, [fetchAllRegisters])
 
   return (
     <S.Container>

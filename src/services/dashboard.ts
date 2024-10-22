@@ -13,9 +13,7 @@ export const getAllRegisters = async () => {
 export const deleteRegister = async (id: string) => {
   try {
     const response = await axios.delete(`${import.meta.env.VITE_API_URL}/registrations/${id}`)
-    if (response.status === 200) {
-      return getAllRegisters()
-    }
+    return response.status === 200
   } catch (error) {
     console.error('Error deleting registration:', error)
     throw error
@@ -31,9 +29,7 @@ export const updateRegistrationStatus = async (registration: any, status: string
         status
       }
     )
-    if (response.status === 200) {
-      return getAllRegisters()
-    }
+    return response.status === 200
   } catch (error) {
     console.error('Error updating registration:', error)
     throw error
@@ -45,8 +41,6 @@ export const getRegistrationByDocumentId = async (documentId: string) => {
     const response = await axios.get(`${import.meta.env.VITE_API_URL}/registrations`, {
       params: { cpf: documentId }
     })
-
-    console.log('Data from API:', response.data)
 
     if (response.status === 200) {
       if (response.data.length > 0) {
