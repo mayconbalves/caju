@@ -17,17 +17,17 @@ export const deleteRegister = async (id: string) => {
       return getAllRegisters()
     }
   } catch (error) {
-    console.error('Error delete registrations:', error)
+    console.error('Error deleting registration:', error)
     throw error
   }
 }
 
-export const updateRegistrationStatus = async (registataion: any, status: string) => {
+export const updateRegistrationStatus = async (registration: any, status: string) => {
   try {
     const response = await axios.put(
-      `${import.meta.env.VITE_API_URL}/registrations/${registataion.id}`,
+      `${import.meta.env.VITE_API_URL}/registrations/${registration.id}`,
       {
-        ...registataion,
+        ...registration,
         status
       }
     )
@@ -35,7 +35,7 @@ export const updateRegistrationStatus = async (registataion: any, status: string
       return getAllRegisters()
     }
   } catch (error) {
-    console.error('Error delete registrations:', error)
+    console.error('Error updating registration:', error)
     throw error
   }
 }
@@ -46,11 +46,15 @@ export const getRegistrationByDocumentId = async (documentId: string) => {
       params: { cpf: documentId }
     })
 
-    if (response.status === 200 && response.data.length > 0) {
-      return response.data[0]
-    } else {
-      console.error('No registration found')
-      return null
+    console.log('Data from API:', response.data)
+
+    if (response.status === 200) {
+      if (response.data.length > 0) {
+        return response.data
+      } else {
+        console.error('No registration found')
+        return []
+      }
     }
   } catch (error) {
     console.error('Error fetching registration by CPF:', error)

@@ -1,23 +1,33 @@
 import { useEffect, useState } from 'react'
+import Loader from '~/components/Loader'
 import {
   deleteRegister,
   getAllRegisters,
   getRegistrationByDocumentId,
   updateRegistrationStatus
 } from '../../services/dashboard'
-import Collumns from './components/Columns'
+import Columns from './components/Columns'
 import { SearchBar } from './components/Searchbar'
 import * as S from './styles'
 
 const DashboardPage = () => {
   const [registrations, setRegistrations] = useState<any[]>([])
+  const [load, setLoad] = useState<boolean>(false)
 
   const fetchAllRegisters = async () => {
+    setLoad(true)
     try {
       const data = await getAllRegisters()
-      setRegistrations(data)
+      if (Array.isArray(data)) {
+        setRegistrations(data)
+      } else {
+        console.error('Expected data to be an array:', data)
+        setRegistrations([])
+      }
     } catch (error) {
       console.error('Error fetching registrations:', error)
+    } finally {
+      setLoad(false)
     }
   }
 
@@ -25,11 +35,14 @@ const DashboardPage = () => {
     if (documentId === '') {
       fetchAllRegisters()
     } else {
+      setLoad(true)
       try {
         const data = await getRegistrationByDocumentId(documentId)
         setRegistrations(data)
       } catch (error) {
         console.error('Error fetching registration by CPF:', error)
+      } finally {
+        setLoad(false)
       }
     }
   }
@@ -58,12 +71,13 @@ const DashboardPage = () => {
 
   return (
     <S.Container>
-      <SearchBar onSearch={handleSearchByCpf} />
-      <Collumns
+      <SearchBar onSearch={handleSearchByCpf} onRefreshRegister={fetchAllRegisters} />
+      <Columns
         registrations={registrations}
         onDelete={handleDeleteRegister}
         onUpdate={handleUpdateRegister}
       />
+      {load && <Loader />}
     </S.Container>
   )
 }
