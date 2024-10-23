@@ -28,7 +28,7 @@ describe('RegistrationCard Component', () => {
     expect(screen.getByText('01/01/2022')).toBeInTheDocument()
   })
 
-  it('should render action icons correctly', () => {
+  it('should render action buttons correctly', () => {
     render(
       <RegistrationCard
         registration={registration}
@@ -37,7 +37,7 @@ describe('RegistrationCard Component', () => {
       />
     )
 
-    expect(screen.getByTestId('delete-btn')).toBeInTheDocument()
+    expect(screen.getByText('Apagar')).toBeInTheDocument()
     expect(screen.getByText('Aprovar')).toBeInTheDocument()
     expect(screen.getByText('Reprovar')).toBeInTheDocument()
   })
@@ -88,7 +88,8 @@ describe('RegistrationCard Component', () => {
       cpf: '56642105087',
       status: 'REPROVED'
     }
-    render(
+
+    const { container } = render(
       <RegistrationCard
         registration={registration}
         onDelete={mockOnDelete}
@@ -98,5 +99,6 @@ describe('RegistrationCard Component', () => {
 
     const reviewButton = screen.getByText('Revisar novamente')
     expect(reviewButton).toBeInTheDocument()
+    expect(container).toMatchSnapshot()
   })
 })

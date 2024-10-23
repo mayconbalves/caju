@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField Component should call onChange when typing in the input 1`] = `
+<div>
+  <div
+    class="sc-aYaIB dmBzed"
+  >
+    <label
+      for="name"
+    >
+      Name
+    </label>
+    <input
+      aria-invalid="false"
+      aria-label="Name"
+      class="sc-gEvDqW hdDevj"
+      name="name"
+      placeholder="Enter your name"
+      value=""
+    />
+  </div>
+</div>
+`;

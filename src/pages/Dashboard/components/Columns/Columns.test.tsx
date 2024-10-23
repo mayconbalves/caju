@@ -77,7 +77,7 @@ describe('Columns Component', () => {
   })
 
   it('should render all column titles', () => {
-    render(
+    const { container } = render(
       <Columns onDelete={mockOnDelete} onUpdate={mockOnUpdate} registrations={registrationsMock} />
     )
 
@@ -85,5 +85,7 @@ describe('Columns Component', () => {
       const columnTitle = screen.getByText(column.title)
       expect(columnTitle).toBeInTheDocument()
     })
+
+    expect(container).toMatchSnapshot()
   })
 })

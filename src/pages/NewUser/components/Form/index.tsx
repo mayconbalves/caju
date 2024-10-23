@@ -107,7 +107,9 @@ const NewUserForm = () => {
           onChange={handleInputChange}
           error={errors.admissionDate}
         />
-        <Button type="submit">Cadastrar</Button>
+        <Button bgcolor="#64a98c" type="submit">
+          Cadastrar
+        </Button>
         {load && <Loader />}
       </form>
 

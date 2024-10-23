@@ -6,12 +6,16 @@ const ConfirmationModal = ({ isOpen, message, onConfirm, onCancel }: ConfirmModa
   if (!isOpen) return null
 
   return (
-    <S.ModalOverlay>
+    <S.ModalOverlay role="dialog">
       <S.ModalContent>
         <p>{message}</p>
         <S.Actions>
-          <Button onClick={onConfirm}>Confirmar</Button>
-          <Button onClick={onCancel}>Cancelar</Button>
+          <Button bgcolor="#9be59b" onClick={onConfirm}>
+            Confirmar
+          </Button>
+          <Button bgcolor="#fc2a2a" onClick={onCancel}>
+            Cancelar
+          </Button>
         </S.Actions>
       </S.ModalContent>
     </S.ModalOverlay>

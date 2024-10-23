@@ -1,4 +1,6 @@
 export type ButtonProps = {
+  bgcolor: string | number
+  color?: string | number
   children?: React.ReactNode
   onClick?: () => void
   type?: 'button' | 'submit'
@@ -9,14 +11,7 @@ export type IconButtonProps = {
   onClick?: () => void
 }
 
-export type SmallButtonProps = {
-  bgcolor: string | number
-  color?: string | number
-  children?: React.ReactNode
-  onClick?: () => void
-}
-
-export type SmallButtonStyleProps = {
+export type ButtonStyleProps = {
   bgcolor: string | number
   color?: string | number
 }

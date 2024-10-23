@@ -12,5 +12,7 @@ describe('Loader component', () => {
     expect(rotatingLines).toBeInTheDocument()
     expect(rotatingLines).toHaveAttribute('stroke', 'red')
     expect(rotatingLines).toHaveAttribute('width', '96')
+
+    expect(container).toMatchSnapshot()
   })
 })

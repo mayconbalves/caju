@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component Buttons IconButton Component calls onClick when clicked 1`] = `
+<div>
+  <button
+    class="sc-gEvDqW jzmXzC"
+    role="button"
+  >
+    <span>
+      Icon
+    </span>
+  </button>
+</div>
+`;

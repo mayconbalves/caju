@@ -3,7 +3,7 @@ import Header from '.'
 
 describe('Header component', () => {
   it('should render children element correctly', () => {
-    render(
+    const { container } = render(
       <Header>
         <h1>Caju Front Teste</h1>
       </Header>
@@ -11,5 +11,7 @@ describe('Header component', () => {
 
     const headerElement = screen.getByText('Caju Front Teste')
     expect(headerElement).toBeInTheDocument()
+
+    expect(container).toMatchSnapshot()
   })
 })

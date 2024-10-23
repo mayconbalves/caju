@@ -7,6 +7,14 @@ export default {
     "/node_modules/",
     "<rootDir>/.storybook/"
   ],
+  testMatch: [
+    "**/__tests__/**/*.[jt]s?(x)",
+    "**/?(*.)+(spec|test).[tj]s?(x)"
+  ],
+  testPathIgnorePatterns: [
+    "/node_modules/",
+    "<rootDir>/.storybook/"
+  ],
   transform: {
     "^.+\\.tsx?$": ["ts-jest", { isolatedModules: true }],
     "^.+\\.(js|jsx)$": "babel-jest",

@@ -1,17 +1,24 @@
 import { useState } from 'react'
-import { HiOutlineCalendar, HiOutlineMail, HiOutlineTrash, HiOutlineUser } from 'react-icons/hi'
-import { SmallButton } from '~/components/Buttons'
+import {
+  HiDocumentText,
+  HiOutlineCalendar,
+  HiOutlineMail,
+  HiOutlineUser,
+  HiTrash
+} from 'react-icons/hi'
+import { Button } from '~/components/Buttons'
 import ConfirmationModal from '~/components/ConfirmModal'
-import { Actions, Card, IconAndText } from './styles'
+import { Actions, Card, DataCard, IconAndText, TitleCard } from './styles'
 import { RegistrationsCardProps } from './types'
 
 const RegistrationCard = ({ registration, onDelete, onUpdate }: RegistrationsCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalAction, setModalAction] = useState<() => void>(() => {})
+  const [modalMessage, setModalMessage] = useState('')
 
   const handleOpenModal = (action: () => void, message: string) => {
-    console.log(message)
     setModalAction(() => action)
+    setModalMessage(message)
     setIsModalOpen(true)
   }
 
@@ -23,21 +30,26 @@ const RegistrationCard = ({ registration, onDelete, onUpdate }: RegistrationsCar
   return (
     <Card>
       <IconAndText>
-        <HiOutlineUser />
-        <h3>{registration.employeeName}</h3>
+        <HiOutlineUser aria-hidden="true" />
+        <TitleCard>{registration.employeeName}</TitleCard>
       </IconAndText>
       <IconAndText>
-        <HiOutlineMail />
-        <p>{registration.email}</p>
+        <HiOutlineMail aria-hidden="true" />
+        <DataCard>{registration.email}</DataCard>
       </IconAndText>
       <IconAndText>
-        <HiOutlineCalendar />
-        <span>{registration.admissionDate}</span>
+        <HiOutlineCalendar aria-hidden="true" />
+        <DataCard>{registration.admissionDate}</DataCard>
+      </IconAndText>
+      <IconAndText>
+        <HiDocumentText aria-hidden="true" />
+        <DataCard>{registration.cpf}</DataCard>
       </IconAndText>
       <Actions>
         {registration.status === 'REVIEW' && (
           <>
-            <SmallButton
+            <Button
+              aria-label="Reprovar registro"
               bgcolor="rgb(255, 145, 154)"
               onClick={() =>
                 handleOpenModal(
@@ -47,9 +59,10 @@ const RegistrationCard = ({ registration, onDelete, onUpdate }: RegistrationsCar
               }
             >
               Reprovar
-            </SmallButton>
-            <SmallButton
-              bgcolor="rgb(155, 229, 155)"
+            </Button>
+            <Button
+              aria-label="Aprovar registro"
+              bgcolor="#9be59b"
               onClick={() =>
                 handleOpenModal(
                   () => onUpdate(registration, 'APPROVED'),
@@ -58,12 +71,13 @@ const RegistrationCard = ({ registration, onDelete, onUpdate }: RegistrationsCar
               }
             >
               Aprovar
-            </SmallButton>
+            </Button>
           </>
         )}
 
         {['REPROVED', 'APPROVED'].includes(registration.status) && (
-          <SmallButton
+          <Button
+            aria-label="Revisar registro novamente"
             data-testid="update-btn"
             bgcolor="#ff8858"
             onClick={() =>
@@ -74,18 +88,23 @@ const RegistrationCard = ({ registration, onDelete, onUpdate }: RegistrationsCar
             }
           >
             Revisar novamente
-          </SmallButton>
+          </Button>
         )}
-
-        <HiOutlineTrash
+        <Button
+          aria-label="Apagar registro"
           data-testid="delete-btn"
+          bgcolor="#fc2a2a"
           onClick={() => handleOpenModal(onDelete, 'Tem certeza que deseja excluir este registro?')}
-        />
+        >
+          Apagar
+          <HiTrash aria-hidden="true" />
+        </Button>
       </Actions>
 
       <ConfirmationModal
         isOpen={isModalOpen}
-        message="Deseja efetuar essa ação"
+        aria-live="assertive"
+        message={modalMessage}
         onConfirm={handleConfirmAction}
         onCancel={() => setIsModalOpen(false)}
       />

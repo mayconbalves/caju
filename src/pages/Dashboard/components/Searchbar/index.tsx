@@ -8,13 +8,9 @@ import routes from '~/router/routes'
 import { isValidCPF } from '~/utils'
 import { cpfMask } from '~/utils/cpf-mask'
 import * as S from './styles'
+import { SearchbarProps } from './types'
 
-type Props = {
-  onSearch: (documentId: string) => void
-  onRefreshRegister: any
-}
-
-export const SearchBar = ({ onSearch, onRefreshRegister }: Props) => {
+export const SearchBar = ({ onSearch, onRefreshRegister }: SearchbarProps) => {
   const history = useHistory()
   const [documentId, setDocumentId] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
@@ -51,17 +47,23 @@ export const SearchBar = ({ onSearch, onRefreshRegister }: Props) => {
   return (
     <S.Container>
       <TextField
+        aria-describedby={errorMessage}
+        aria-invalid={!!errorMessage}
+        data-testid="documentId"
         placeholder="Digite um CPF válido"
+        maxLength={14}
         name="documentId"
         onChange={handleInputChange}
         value={cpfMask(documentId)}
         error={errorMessage}
       />
       <S.Actions>
-        <IconButton aria-label="refetch" onClick={handleRefreshClick}>
+        <IconButton aria-label="Atualizar registros" onClick={handleRefreshClick}>
           <HiRefresh />
         </IconButton>
-        <Button onClick={goToNewAdmissionPage}>Nova Admissão</Button>
+        <Button bgcolor="#64a98c" onClick={goToNewAdmissionPage}>
+          Nova Admissão
+        </Button>
       </S.Actions>
 
       <ConfirmationModal
