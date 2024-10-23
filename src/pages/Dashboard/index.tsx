@@ -9,10 +9,11 @@ import {
 } from '../../services/dashboard'
 import Columns from './components/Columns'
 import { SearchBar } from './components/Searchbar'
-import * as S from './styles'
+import { Wrapper } from './styles'
+import { Registrations } from './types'
 
 const DashboardPage = () => {
-  const [registrations, setRegistrations] = useState<any[]>([])
+  const [registrations, setRegistrations] = useState<Registrations[]>([])
   const [load, setLoad] = useState<boolean>(false)
   const { showToast } = useToast()
 
@@ -63,7 +64,7 @@ const DashboardPage = () => {
     }
   }
 
-  const handleUpdateRegister = async (registration: any, status: string) => {
+  const handleUpdateRegister = async (registration: Registrations, status: string) => {
     try {
       const success = await updateRegistrationStatus(registration, status)
       if (success) {
@@ -80,7 +81,7 @@ const DashboardPage = () => {
   }, [fetchAllRegisters])
 
   return (
-    <S.Container>
+    <Wrapper>
       <SearchBar onSearch={handleSearchByCpf} onRefreshRegister={fetchAllRegisters} />
       <Columns
         registrations={registrations}
@@ -88,7 +89,7 @@ const DashboardPage = () => {
         onUpdate={handleUpdateRegister}
       />
       {load && <Loader />}
-    </S.Container>
+    </Wrapper>
   )
 }
 

@@ -1,8 +1,9 @@
 import axios from 'axios'
+import { BASE_URL } from '~/constants'
 
 export const getAllRegisters = async () => {
   try {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/registrations`)
+    const response = await axios.get(`${BASE_URL}/registrations`)
     return response.data
   } catch (error) {
     console.error('Error fetching registrations:', error)
@@ -12,7 +13,7 @@ export const getAllRegisters = async () => {
 
 export const deleteRegister = async (id: string) => {
   try {
-    const response = await axios.delete(`${import.meta.env.VITE_API_URL}/registrations/${id}`)
+    const response = await axios.delete(`${BASE_URL}/registrations/${id}`)
     return response.status === 200
   } catch (error) {
     console.error('Error deleting registration:', error)
@@ -22,13 +23,10 @@ export const deleteRegister = async (id: string) => {
 
 export const updateRegistrationStatus = async (registration: any, status: string) => {
   try {
-    const response = await axios.put(
-      `${import.meta.env.VITE_API_URL}/registrations/${registration.id}`,
-      {
-        ...registration,
-        status
-      }
-    )
+    const response = await axios.put(`${BASE_URL}/registrations/${registration.id}`, {
+      ...registration,
+      status
+    })
     return response.status === 200
   } catch (error) {
     console.error('Error updating registration:', error)
@@ -38,7 +36,7 @@ export const updateRegistrationStatus = async (registration: any, status: string
 
 export const getRegistrationByDocumentId = async (documentId: string) => {
   try {
-    const response = await axios.get(`${import.meta.env.VITE_API_URL}/registrations`, {
+    const response = await axios.get(`${BASE_URL}/registrations`, {
       params: { cpf: documentId }
     })
 

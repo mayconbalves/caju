@@ -1,39 +1,34 @@
 import { allColumns } from '~/constants'
 import RegistrationCard from '../RegistrationCard'
-import * as S from './styles'
+import { CollumContent, Column, TitleColumn, Wrapper } from './styles'
+import { ColumnProps, Registrations } from './types'
 
-type Props = {
-  registrations?: any[]
-  onDelete: (id: string) => void
-  onUpdate: (registration: any, status: string) => void
-}
-
-const Columns = (props: Props) => {
+const Columns = ({ onDelete, onUpdate, registrations }: ColumnProps) => {
   return (
-    <S.Container>
+    <Wrapper>
       {allColumns.map((column) => {
-        const filteredRegistrations: any = Array.isArray(props.registrations)
-          ? props.registrations.filter((registration) => registration.status === column.status)
+        const filteredRegistrations = Array.isArray(registrations)
+          ? registrations.filter((registration) => registration.status === column.status)
           : []
 
         return (
-          <S.Column status={column.status} key={column.title}>
-            <S.TitleColumn status={column.status}>{column.title}</S.TitleColumn>
-            <S.CollumContent>
+          <Column status={column.status} key={column.title}>
+            <TitleColumn status={column.status}>{column.title}</TitleColumn>
+            <CollumContent>
               {filteredRegistrations.length > 0 &&
-                filteredRegistrations.map((registration: any) => (
+                filteredRegistrations.map((registration: Registrations) => (
                   <RegistrationCard
-                    data={registration}
+                    registration={registration}
                     key={registration.id}
-                    onDelete={() => props.onDelete(registration.id)}
-                    onUpdate={props.onUpdate}
+                    onDelete={() => onDelete(registration.id)}
+                    onUpdate={onUpdate}
                   />
                 ))}
-            </S.CollumContent>
-          </S.Column>
+            </CollumContent>
+          </Column>
         )
       })}
-    </S.Container>
+    </Wrapper>
   )
 }
 

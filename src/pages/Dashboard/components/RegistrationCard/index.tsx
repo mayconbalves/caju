@@ -2,15 +2,10 @@ import { useState } from 'react'
 import { HiOutlineCalendar, HiOutlineMail, HiOutlineTrash, HiOutlineUser } from 'react-icons/hi'
 import { SmallButton } from '~/components/Buttons'
 import ConfirmationModal from '~/components/ConfirmModal'
-import * as S from './styles'
+import { Actions, Card, IconAndText } from './styles'
+import { RegistrationsCardProps } from './types'
 
-type Props = {
-  data: any
-  onDelete: () => void
-  onUpdate: (registration: any, status: string) => void
-}
-
-const RegistrationCard = (props: Props) => {
+const RegistrationCard = ({ registration, onDelete, onUpdate }: RegistrationsCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [modalAction, setModalAction] = useState<() => void>(() => {})
 
@@ -26,27 +21,27 @@ const RegistrationCard = (props: Props) => {
   }
 
   return (
-    <S.Card>
-      <S.IconAndText>
+    <Card>
+      <IconAndText>
         <HiOutlineUser />
-        <h3>{props.data.employeeName}</h3>
-      </S.IconAndText>
-      <S.IconAndText>
+        <h3>{registration.employeeName}</h3>
+      </IconAndText>
+      <IconAndText>
         <HiOutlineMail />
-        <p>{props.data.email}</p>
-      </S.IconAndText>
-      <S.IconAndText>
+        <p>{registration.email}</p>
+      </IconAndText>
+      <IconAndText>
         <HiOutlineCalendar />
-        <span>{props.data.admissionDate}</span>
-      </S.IconAndText>
-      <S.Actions>
-        {props.data.status === 'REVIEW' && (
+        <span>{registration.admissionDate}</span>
+      </IconAndText>
+      <Actions>
+        {registration.status === 'REVIEW' && (
           <>
             <SmallButton
               bgcolor="rgb(255, 145, 154)"
               onClick={() =>
                 handleOpenModal(
-                  () => props.onUpdate(props.data, 'REPROVED'),
+                  () => onUpdate(registration, 'REPROVED'),
                   'Tem certeza que deseja reprovar este registro?'
                 )
               }
@@ -57,7 +52,7 @@ const RegistrationCard = (props: Props) => {
               bgcolor="rgb(155, 229, 155)"
               onClick={() =>
                 handleOpenModal(
-                  () => props.onUpdate(props.data, 'APPROVED'),
+                  () => onUpdate(registration, 'APPROVED'),
                   'Tem certeza que deseja aprovar este registro?'
                 )
               }
@@ -67,12 +62,13 @@ const RegistrationCard = (props: Props) => {
           </>
         )}
 
-        {['REPROVED', 'APPROVED'].includes(props.data.status) && (
+        {['REPROVED', 'APPROVED'].includes(registration.status) && (
           <SmallButton
+            data-testid="update-btn"
             bgcolor="#ff8858"
             onClick={() =>
               handleOpenModal(
-                () => props.onUpdate(props.data, 'REVIEW'),
+                () => onUpdate(registration, 'REVIEW'),
                 'Tem certeza que deseja revisar novamente este registro?'
               )
             }
@@ -82,11 +78,10 @@ const RegistrationCard = (props: Props) => {
         )}
 
         <HiOutlineTrash
-          onClick={() =>
-            handleOpenModal(props.onDelete, 'Tem certeza que deseja excluir este registro?')
-          }
+          data-testid="delete-btn"
+          onClick={() => handleOpenModal(onDelete, 'Tem certeza que deseja excluir este registro?')}
         />
-      </S.Actions>
+      </Actions>
 
       <ConfirmationModal
         isOpen={isModalOpen}
@@ -94,7 +89,7 @@ const RegistrationCard = (props: Props) => {
         onConfirm={handleConfirmAction}
         onCancel={() => setIsModalOpen(false)}
       />
-    </S.Card>
+    </Card>
   )
 }
 
