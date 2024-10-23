@@ -8,7 +8,8 @@ module.exports = {
     "plugin:@typescript-eslint/recommended",
     "eslint-config-prettier",
     "plugin:react-hooks/recommended",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
   plugins: ['prettier', '@typescript-eslint', 'react', 'react-hooks'],
   settings: {

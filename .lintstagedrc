@@ -3,7 +3,7 @@
     "prettier --write",
     "eslint --fix",
     "eslint",
-    "yarn test"
+    "jest --testPathIgnorePatterns='<rootDir>/.storybook/'"
   ],
   "*/**/*.{json,css,md}": [
     "prettier --write"
