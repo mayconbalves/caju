@@ -1,12 +1,13 @@
 import axios from 'axios'
 import { BASE_URL } from '~/constants'
+import { logError } from '~/utils/error-log'
 
 export const getAllRegisters = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/registrations`)
     return response.data
   } catch (error) {
-    console.error('Error fetching registrations:', error)
+    logError('Error fetching registrations:', error)
     throw error
   }
 }
@@ -16,7 +17,7 @@ export const deleteRegister = async (id: string) => {
     const response = await axios.delete(`${BASE_URL}/registrations/${id}`)
     return response.status === 200
   } catch (error) {
-    console.error('Error deleting registration:', error)
+    logError('Error deleting registration:', error)
     throw error
   }
 }
@@ -29,7 +30,7 @@ export const updateRegistrationStatus = async (registration: any, status: string
     })
     return response.status === 200
   } catch (error) {
-    console.error('Error updating registration:', error)
+    logError('Error updating registration:', error)
     throw error
   }
 }
@@ -44,12 +45,11 @@ export const getRegistrationByDocumentId = async (documentId: string) => {
       if (response.data.length > 0) {
         return response.data
       } else {
-        console.error('No registration found')
         return []
       }
     }
   } catch (error) {
-    console.error('Error fetching registration by CPF:', error)
+    logError('Error fetching registration by CPF:', error)
     throw error
   }
 }
