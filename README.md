@@ -1,6 +1,6 @@
 # Caju Front End Teste
 
-## Instruções de como rodar o projeto
+## Instruções de como rodar o projeto ou [acesse aqui.](https://caju-mauve.vercel.app/#/dashboard)
 
 ### Faça o clone do projeto:
 
