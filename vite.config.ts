@@ -4,7 +4,7 @@ import path from 'path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/caju/',
+  base: '/',
   plugins: [react(), eslintPlugin()],
   server: {
     port: 3001
