@@ -1,7 +1,7 @@
 export type FormData = {
   employeeName: string
   email: string
-  documentId: string
+  cpf: string
   admissionDate: string
   status: string
 }
@@ -9,6 +9,6 @@ export type FormData = {
 export type FormErrors = {
   employeeName?: string
   email?: string
-  documentId?: string
+  cpf?: string
   admissionDate?: string
 }

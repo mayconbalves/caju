@@ -10,6 +10,8 @@ export const Container = styled.div`
 
 export const Card = styled.div`
   border: 2px solid #f0f0f0;
+  border-radius: 10px;
+  margin-top: 10px;
   width: 500px;
   padding: 48px;
   display: flex;

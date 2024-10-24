@@ -15,6 +15,7 @@ export const Button = styled.button<ButtonStyleProps>`
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   font-size: 16px;
   font-weight: 600;
+  width: fit-content;
 
   &:focus {
     outline: 2px solid #007c89;

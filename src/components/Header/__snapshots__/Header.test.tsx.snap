@@ -3,7 +3,7 @@
 exports[`Header component should render children element correctly 1`] = `
 <div>
   <header
-    class="sc-aYaIB fhKKky"
+    class="sc-aYaIB jFxYKq"
   >
     <h1>
       Caju Front Teste

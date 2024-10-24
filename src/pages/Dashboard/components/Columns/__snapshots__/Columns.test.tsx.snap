@@ -3,26 +3,26 @@
 exports[`Columns Component should render all column titles 1`] = `
 <div>
   <div
-    class="sc-dhKdPU fXobNm"
+    class="sc-jlZhRR jymKEk"
   >
     <div
-      class="sc-kpDprT dIrErX"
+      class="sc-cwHqhk gpobLo"
       status="REVIEW"
     >
-      <h3
-        class="sc-dAlxHm iCtGnT"
+      <h2
+        class="sc-jEABJj jQcyij"
         status="REVIEW"
       >
         Pronto para revisar
-      </h3>
+      </h2>
       <div
-        class="sc-jlZhRR bxCgfy"
+        class="sc-cPiJYC lmbtNg"
       >
         <div
-          class="sc-iGgVNO hCJmzu"
+          class="sc-imWZod liahti"
         >
           <div
-            class="sc-imWZod khhZTg"
+            class="sc-kpDprT jplfHT"
           >
             <svg
               aria-hidden="true"
@@ -41,13 +41,13 @@ exports[`Columns Component should render all column titles 1`] = `
               />
             </svg>
             <h3
-              class="sc-gsFSjX fTupGZ"
+              class="sc-jXbVAB bkqFXX"
             >
               John Doe
             </h3>
           </div>
           <div
-            class="sc-imWZod khhZTg"
+            class="sc-kpDprT jplfHT"
           >
             <svg
               aria-hidden="true"
@@ -66,13 +66,13 @@ exports[`Columns Component should render all column titles 1`] = `
               />
             </svg>
             <p
-              class="sc-kAycRU iKlxbJ"
+              class="sc-dhKdPU inPPyg"
             >
               john@example.com
             </p>
           </div>
           <div
-            class="sc-imWZod khhZTg"
+            class="sc-kpDprT jplfHT"
           >
             <svg
               aria-hidden="true"
@@ -91,13 +91,13 @@ exports[`Columns Component should render all column titles 1`] = `
               />
             </svg>
             <p
-              class="sc-kAycRU iKlxbJ"
+              class="sc-dhKdPU inPPyg"
             >
               2023-10-10
             </p>
           </div>
           <div
-            class="sc-imWZod khhZTg"
+            class="sc-kpDprT jplfHT"
           >
             <svg
               aria-hidden="true"
@@ -116,31 +116,31 @@ exports[`Columns Component should render all column titles 1`] = `
               />
             </svg>
             <p
-              class="sc-kAycRU iKlxbJ"
+              class="sc-dhKdPU inPPyg"
             >
               12345678900
             </p>
           </div>
           <div
-            class="sc-jXbVAB hopCNy"
+            class="sc-dAlxHm evHRGf"
           >
             <button
               bgcolor="rgb(255, 145, 154)"
-              class="sc-aYaIB bqkmWD"
+              class="sc-aYaIB eQracN"
               role="button"
             >
               Reprovar
             </button>
             <button
               bgcolor="#9be59b"
-              class="sc-aYaIB bEaUiQ"
+              class="sc-aYaIB esWCZC"
               role="button"
             >
               Aprovar
             </button>
             <button
               bgcolor="#fc2a2a"
-              class="sc-aYaIB gfRTEx"
+              class="sc-aYaIB eQVzbP"
               role="button"
             >
               Apagar
@@ -166,23 +166,23 @@ exports[`Columns Component should render all column titles 1`] = `
       </div>
     </div>
     <div
-      class="sc-kpDprT eUdbqx"
+      class="sc-cwHqhk gcZkUi"
       status="APPROVED"
     >
-      <h3
-        class="sc-dAlxHm biXksj"
+      <h2
+        class="sc-jEABJj aEYLf"
         status="APPROVED"
       >
         Aprovado
-      </h3>
+      </h2>
       <div
-        class="sc-jlZhRR bxCgfy"
+        class="sc-cPiJYC lmbtNg"
       >
         <div
-          class="sc-iGgVNO hCJmzu"
+          class="sc-imWZod liahti"
         >
           <div
-            class="sc-imWZod khhZTg"
+            class="sc-kpDprT jplfHT"
           >
             <svg
               aria-hidden="true"
@@ -201,13 +201,13 @@ exports[`Columns Component should render all column titles 1`] = `
               />
             </svg>
             <h3
-              class="sc-gsFSjX fTupGZ"
+              class="sc-jXbVAB bkqFXX"
             >
               Jane Doe
             </h3>
           </div>
           <div
-            class="sc-imWZod khhZTg"
+            class="sc-kpDprT jplfHT"
           >
             <svg
               aria-hidden="true"
@@ -226,13 +226,13 @@ exports[`Columns Component should render all column titles 1`] = `
               />
             </svg>
             <p
-              class="sc-kAycRU iKlxbJ"
+              class="sc-dhKdPU inPPyg"
             >
               jane@example.com
             </p>
           </div>
           <div
-            class="sc-imWZod khhZTg"
+            class="sc-kpDprT jplfHT"
           >
             <svg
               aria-hidden="true"
@@ -251,13 +251,13 @@ exports[`Columns Component should render all column titles 1`] = `
               />
             </svg>
             <p
-              class="sc-kAycRU iKlxbJ"
+              class="sc-dhKdPU inPPyg"
             >
               2023-10-10
             </p>
           </div>
           <div
-            class="sc-imWZod khhZTg"
+            class="sc-kpDprT jplfHT"
           >
             <svg
               aria-hidden="true"
@@ -276,24 +276,24 @@ exports[`Columns Component should render all column titles 1`] = `
               />
             </svg>
             <p
-              class="sc-kAycRU iKlxbJ"
+              class="sc-dhKdPU inPPyg"
             >
               12345678900
             </p>
           </div>
           <div
-            class="sc-jXbVAB hopCNy"
+            class="sc-dAlxHm evHRGf"
           >
             <button
               bgcolor="#ff8858"
-              class="sc-aYaIB kOsZDd"
+              class="sc-aYaIB eYtHmf"
               role="button"
             >
               Revisar novamente
             </button>
             <button
               bgcolor="#fc2a2a"
-              class="sc-aYaIB gfRTEx"
+              class="sc-aYaIB eQVzbP"
               role="button"
             >
               Apagar
@@ -319,17 +319,17 @@ exports[`Columns Component should render all column titles 1`] = `
       </div>
     </div>
     <div
-      class="sc-kpDprT cGROKa"
+      class="sc-cwHqhk joeIwF"
       status="REPROVED"
     >
-      <h3
-        class="sc-dAlxHm fdSlgT"
+      <h2
+        class="sc-jEABJj buwuAL"
         status="REPROVED"
       >
         Reprovado
-      </h3>
+      </h2>
       <div
-        class="sc-jlZhRR bxCgfy"
+        class="sc-cPiJYC lmbtNg"
       />
     </div>
   </div>

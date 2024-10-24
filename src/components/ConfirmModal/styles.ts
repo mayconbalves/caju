@@ -1,3 +1,4 @@
+import { HiOutlineX } from 'react-icons/hi'
 import styled from 'styled-components'
 
 export const ModalOverlay = styled.div`
@@ -20,13 +21,30 @@ export const ModalContent = styled.div`
   max-width: 90%;
 `
 
+export const ModalTitle = styled.h2`
+  margin-top: 0;
+`
+
+export const WrapperIcon = styled.div`
+  display: flex;
+  justify-content: end;
+  width: 100%;
+`
+
+export const CloseIcon = styled(HiOutlineX)`
+  cursor: pointer;
+  font-size: x-large;
+  position: relative;
+  right: 0;
+
+  &:hover {
+    color: #fc2a2a;
+    transform: scale(1.2);
+  }
+`
+
 export const Actions = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-
-  button {
-    padding: 10px 20px;
-    cursor: pointer;
-  }
 `

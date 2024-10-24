@@ -8,6 +8,7 @@ import { useToast } from '~/contexts/Toast/useToast'
 import routes from '~/router/routes'
 import { createNewUser } from '~/services/new-user'
 import { cpfMask } from '~/utils'
+import { Form } from './styles'
 import { FormData, FormErrors } from './types'
 import { validateField } from './validator'
 
@@ -18,7 +19,7 @@ const NewUserForm = () => {
   const [formData, setFormData] = useState<FormData>({
     employeeName: '',
     email: '',
-    documentId: '',
+    cpf: '',
     admissionDate: '',
     status: 'REVIEW'
   })
@@ -73,7 +74,7 @@ const NewUserForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmitForm}>
+      <Form onSubmit={handleSubmitForm}>
         <TextField
           placeholder="Nome"
           label="Nome"
@@ -94,10 +95,10 @@ const NewUserForm = () => {
         <TextField
           placeholder="CPF"
           label="CPF"
-          name="documentId"
-          value={cpfMask(formData.documentId)}
+          name="cpf"
+          value={cpfMask(formData.cpf)}
           onChange={handleInputChange}
-          error={errors.documentId}
+          error={errors.cpf}
         />
         <TextField
           label="Data de admissão"
@@ -111,7 +112,7 @@ const NewUserForm = () => {
           Cadastrar
         </Button>
         {load && <Loader />}
-      </form>
+      </Form>
 
       <ConfirmationModal
         isOpen={isModalOpen}

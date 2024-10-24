@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { Button } from '~/components/Buttons'
-import * as S from './styles'
+import { Actions, CloseIcon, ModalContent, ModalOverlay, ModalTitle, WrapperIcon } from './styles'
 import { ConfirmModalProps } from './types'
 
 const ConfirmationModal = ({ isOpen, message, onConfirm, onCancel }: ConfirmModalProps) => {
@@ -21,20 +21,23 @@ const ConfirmationModal = ({ isOpen, message, onConfirm, onCancel }: ConfirmModa
   if (!isOpen) return null
 
   return (
-    <S.ModalOverlay role="dialog" aria-labelledby="Modal de confirmação" aria-describedby={message}>
-      <S.ModalContent>
-        <h2 id="modal-title">Confirmação</h2>
-        <p id="modal-description">{message}</p>
-        <S.Actions>
-          <Button bgcolor="#9be59b" onClick={onConfirm} aria-label="Confirmar ação">
+    <ModalOverlay role="dialog" aria-labelledby="modal-de-confirmação" aria-describedby={message}>
+      <ModalContent>
+        <WrapperIcon>
+          <CloseIcon onClick={onCancel} />
+        </WrapperIcon>
+        <ModalTitle id="titulo-do-modal">Confirmação</ModalTitle>
+        <p id={message}>{message}</p>
+        <Actions>
+          <Button bgcolor="#9be59b" onClick={onConfirm} aria-label="confirmar-ação">
             Confirmar
           </Button>
-          <Button bgcolor="#fc2a2a" onClick={onCancel} aria-label="Cancelar ação">
+          <Button bgcolor="#fc2a2a" onClick={onCancel} aria-label="cancelar-ação">
             Cancelar
           </Button>
-        </S.Actions>
-      </S.ModalContent>
-    </S.ModalOverlay>
+        </Actions>
+      </ModalContent>
+    </ModalOverlay>
   )
 }
 

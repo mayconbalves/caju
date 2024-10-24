@@ -1,4 +1,4 @@
 export type SearchbarProps = {
-  onSearch: (documentId: string) => void
+  onSearch: (cpf: string) => void
   onRefreshRegister: () => void
 }

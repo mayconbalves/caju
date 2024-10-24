@@ -15,10 +15,12 @@ import { Registrations } from './types'
 const DashboardPage = () => {
   const [registrations, setRegistrations] = useState<Registrations[]>([])
   const [load, setLoad] = useState<boolean>(false)
+  const [noResults, setNoResults] = useState<boolean>(false)
   const { showToast } = useToast()
 
   const fetchAllRegisters = useCallback(async () => {
     setLoad(true)
+    setNoResults(false)
     try {
       const data = await getAllRegisters()
       if (Array.isArray(data)) {
@@ -35,13 +37,17 @@ const DashboardPage = () => {
     }
   }, [showToast])
 
-  const handleSearchByCpf = async (documentId: string) => {
-    if (documentId === '') {
+  const handleSearchByCpf = async (cpf: string) => {
+    if (cpf === '') {
       fetchAllRegisters()
     } else {
       setLoad(true)
+      setNoResults(false)
       try {
-        const data = await getRegistrationByDocumentId(documentId)
+        const data = await getRegistrationByDocumentId(cpf)
+        if (data.length === 0) {
+          setNoResults(true)
+        }
         setRegistrations(data)
         showToast('Busca por CPF realizada com sucesso!', 'success')
       } catch {
@@ -83,6 +89,9 @@ const DashboardPage = () => {
   return (
     <Wrapper>
       <SearchBar onSearch={handleSearchByCpf} onRefreshRegister={fetchAllRegisters} />
+      {noResults && (
+        <div>{'Nenhum registro encontrado para esse CPF. Por favor tente novamente. '}</div>
+      )}
       <Columns
         registrations={registrations}
         onDelete={handleDeleteRegister}

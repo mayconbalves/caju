@@ -3,31 +3,31 @@
 exports[`SearchBar Component does not call onSearch with invalid CPF 1`] = `
 <div>
   <div
-    class="sc-imWZod cRkJrd"
+    class="sc-kpDprT iMQDqC"
   >
     <div
-      class="sc-iGgVNO cLKoAh"
+      class="sc-imWZod gcNvdN"
     >
       <label />
       <input
         aria-describedby="CPF inválido. Por favor, verifique."
         aria-invalid="true"
-        class="sc-gsFSjX fHmFdN"
+        class="sc-jXbVAB jDEKPX"
         error="CPF inválido. Por favor, verifique."
         maxlength="14"
-        name="documentId"
+        name="cpf"
         placeholder="Digite um CPF válido"
         value="111.111.111-11"
       />
       <span
-        class="sc-kAycRU bjOANR"
+        class="sc-dhKdPU dgvDlA"
         id="undefined-error"
       >
         CPF inválido. Por favor, verifique.
       </span>
     </div>
     <div
-      class="sc-jXbVAB dUIxnI"
+      class="sc-dAlxHm huAqnd"
     >
       <button
         class="sc-gEvDqW jzmXzC"
@@ -52,7 +52,7 @@ exports[`SearchBar Component does not call onSearch with invalid CPF 1`] = `
       </button>
       <button
         bgcolor="#64a98c"
-        class="sc-aYaIB dnacNp"
+        class="sc-aYaIB lmkKkb"
         role="button"
       >
         Nova Admissão

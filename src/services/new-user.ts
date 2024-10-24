@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { BASE_URL } from '~/constants'
-import { logError } from '~/utils/error-log'
+import { logError } from '~/utils/'
 
 export const createNewUser = async (params: any) => {
   try {

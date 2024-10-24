@@ -75,7 +75,7 @@ describe('Registration Service', () => {
   })
 
   it('should fetch registration by document ID', async () => {
-    const documentId = '56642105087'
+    const cpf = '56642105087'
     const registrations = [
       {
         id: '3',
@@ -83,24 +83,22 @@ describe('Registration Service', () => {
         email: 'luiz@caju.com.br',
         employeeName: 'Luiz Filho',
         status: 'REPROVED',
-        cpf: documentId
+        cpf: cpf
       }
     ]
 
-    mock
-      .onGet(`${BASE_URL}/registrations`, { params: { cpf: documentId } })
-      .reply(200, registrations)
+    mock.onGet(`${BASE_URL}/registrations`, { params: { cpf } }).reply(200, registrations)
 
-    const result = await getRegistrationByDocumentId(documentId)
+    const result = await getRegistrationByDocumentId(cpf)
     expect(result).toEqual(registrations)
   })
 
   it('should return an empty array if no registration found by document ID', async () => {
-    const documentId = '00000000000'
+    const cpf = '00000000000'
 
-    mock.onGet(`${BASE_URL}/registrations`, { params: { cpf: documentId } }).reply(200, [])
+    mock.onGet(`${BASE_URL}/registrations`, { params: { cpf } }).reply(200, [])
 
-    const result = await getRegistrationByDocumentId(documentId)
+    const result = await getRegistrationByDocumentId(cpf)
     expect(result).toEqual([])
   })
 

@@ -3,6 +3,9 @@ export default {
   verbose: true,
   preset: "ts-jest",
   testEnvironment: "jsdom",
+  globals: {
+    VITE_API_URL: 'https://caju-backend.vercel.app/api'
+  },
   testPathIgnorePatterns: [
     "/node_modules/",
     "<rootDir>/.storybook/"

@@ -3,12 +3,12 @@ import { isValidCPF, isValidEmail, isValidEmployeeName } from '~/utils'
 const validations: Record<string, (value: string) => boolean> = {
   employeeName: isValidEmployeeName,
   email: isValidEmail,
-  documentId: isValidCPF,
+  cpf: isValidCPF,
   admissionDate: (value: string) => !!value
 }
 
 export const validateField = (name: string, value: string): string => {
-  if (name === 'documentId' && !isValidCPF(value)) {
+  if (name === 'cpf' && !isValidCPF(value)) {
     return 'CPF inválido.'
   }
   if (name === 'admissionDate' && !value) {

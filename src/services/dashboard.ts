@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { BASE_URL } from '~/constants'
-import { logError } from '~/utils/error-log'
+import { logError } from '~/utils/'
 
 export const getAllRegisters = async () => {
   try {
@@ -35,10 +35,10 @@ export const updateRegistrationStatus = async (registration: any, status: string
   }
 }
 
-export const getRegistrationByDocumentId = async (documentId: string) => {
+export const getRegistrationByDocumentId = async (cpf: string) => {
   try {
     const response = await axios.get(`${BASE_URL}/registrations`, {
-      params: { cpf: documentId }
+      params: { cpf }
     })
 
     if (response.status === 200) {

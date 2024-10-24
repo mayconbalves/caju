@@ -2,9 +2,11 @@
 
 exports[`NewUserForm Component should be create snapshot 1`] = `
 <div>
-  <form>
+  <form
+    class="sc-dAlxHm buSIyY"
+  >
     <div
-      class="sc-gsFSjX nzYms"
+      class="sc-jXbVAB exPVBO"
     >
       <label>
         Nome
@@ -12,14 +14,14 @@ exports[`NewUserForm Component should be create snapshot 1`] = `
       <input
         aria-invalid="false"
         aria-label="Nome"
-        class="sc-kAycRU iFzHoK"
+        class="sc-dhKdPU RUPcf"
         name="employeeName"
         placeholder="Nome"
         value=""
       />
     </div>
     <div
-      class="sc-gsFSjX nzYms"
+      class="sc-jXbVAB exPVBO"
     >
       <label>
         Email
@@ -27,7 +29,7 @@ exports[`NewUserForm Component should be create snapshot 1`] = `
       <input
         aria-invalid="false"
         aria-label="Email"
-        class="sc-kAycRU iFzHoK"
+        class="sc-dhKdPU RUPcf"
         name="email"
         placeholder="Email"
         type="email"
@@ -35,7 +37,7 @@ exports[`NewUserForm Component should be create snapshot 1`] = `
       />
     </div>
     <div
-      class="sc-gsFSjX nzYms"
+      class="sc-jXbVAB exPVBO"
     >
       <label>
         CPF
@@ -43,14 +45,14 @@ exports[`NewUserForm Component should be create snapshot 1`] = `
       <input
         aria-invalid="false"
         aria-label="CPF"
-        class="sc-kAycRU iFzHoK"
-        name="documentId"
+        class="sc-dhKdPU RUPcf"
+        name="cpf"
         placeholder="CPF"
         value=""
       />
     </div>
     <div
-      class="sc-gsFSjX nzYms"
+      class="sc-jXbVAB exPVBO"
     >
       <label>
         Data de admissão
@@ -58,7 +60,7 @@ exports[`NewUserForm Component should be create snapshot 1`] = `
       <input
         aria-invalid="false"
         aria-label="Data de admissão"
-        class="sc-kAycRU iFzHoK"
+        class="sc-dhKdPU RUPcf"
         name="admissionDate"
         type="date"
         value=""
@@ -66,7 +68,7 @@ exports[`NewUserForm Component should be create snapshot 1`] = `
     </div>
     <button
       bgcolor="#64a98c"
-      class="sc-aYaIB dnacNp"
+      class="sc-aYaIB lmkKkb"
       role="button"
       type="submit"
     >

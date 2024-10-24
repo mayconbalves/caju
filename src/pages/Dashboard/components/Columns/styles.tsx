@@ -22,9 +22,18 @@ export const Wrapper = styled.div`
   grid-gap: 24px;
   justify-content: center;
   margin-top: 24px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    grid-gap: 16px;
+  }
 `
 
-export const Column = styled.div<{ status: any }>`
+export const Column = styled.div<{ status: string }>`
   height: auto;
   background-color: ${({ status }) => registrationStatusStyles[status].background};
   border-radius: 32px;
@@ -32,7 +41,7 @@ export const Column = styled.div<{ status: any }>`
   max-height: 80vh;
 `
 
-export const TitleColumn = styled.h3<{ status: any }>`
+export const TitleColumn = styled.h2<{ status: string }>`
   margin: 0px;
   color: ${({ status }) => registrationStatusStyles[status].title};
   margin: 24px;

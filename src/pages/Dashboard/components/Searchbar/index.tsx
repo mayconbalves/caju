@@ -12,7 +12,7 @@ import { SearchbarProps } from './types'
 
 export const SearchBar = ({ onSearch, onRefreshRegister }: SearchbarProps) => {
   const history = useHistory()
-  const [documentId, setDocumentId] = useState('')
+  const [cpf, setDocumentId] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -49,12 +49,12 @@ export const SearchBar = ({ onSearch, onRefreshRegister }: SearchbarProps) => {
       <TextField
         aria-describedby={errorMessage}
         aria-invalid={!!errorMessage}
-        data-testid="documentId"
+        data-testid="cpf"
         placeholder="Digite um CPF válido"
         maxLength={14}
-        name="documentId"
+        name="cpf"
         onChange={handleInputChange}
-        value={cpfMask(documentId)}
+        value={cpfMask(cpf)}
         error={errorMessage}
       />
       <S.Actions>

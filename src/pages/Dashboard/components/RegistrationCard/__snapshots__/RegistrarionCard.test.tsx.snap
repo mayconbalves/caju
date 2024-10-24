@@ -3,10 +3,10 @@
 exports[`RegistrationCard Component should render Review button when registration is in REPROVED status 1`] = `
 <div>
   <div
-    class="sc-iGgVNO hCJmzu"
+    class="sc-imWZod liahti"
   >
     <div
-      class="sc-imWZod khhZTg"
+      class="sc-kpDprT jplfHT"
     >
       <svg
         aria-hidden="true"
@@ -25,13 +25,13 @@ exports[`RegistrationCard Component should render Review button when registratio
         />
       </svg>
       <h3
-        class="sc-gsFSjX fTupGZ"
+        class="sc-jXbVAB bkqFXX"
       >
         John Doe
       </h3>
     </div>
     <div
-      class="sc-imWZod khhZTg"
+      class="sc-kpDprT jplfHT"
     >
       <svg
         aria-hidden="true"
@@ -50,13 +50,13 @@ exports[`RegistrationCard Component should render Review button when registratio
         />
       </svg>
       <p
-        class="sc-kAycRU iKlxbJ"
+        class="sc-dhKdPU inPPyg"
       >
         john@example.com
       </p>
     </div>
     <div
-      class="sc-imWZod khhZTg"
+      class="sc-kpDprT jplfHT"
     >
       <svg
         aria-hidden="true"
@@ -75,13 +75,13 @@ exports[`RegistrationCard Component should render Review button when registratio
         />
       </svg>
       <p
-        class="sc-kAycRU iKlxbJ"
+        class="sc-dhKdPU inPPyg"
       >
         01/01/2022
       </p>
     </div>
     <div
-      class="sc-imWZod khhZTg"
+      class="sc-kpDprT jplfHT"
     >
       <svg
         aria-hidden="true"
@@ -100,24 +100,24 @@ exports[`RegistrationCard Component should render Review button when registratio
         />
       </svg>
       <p
-        class="sc-kAycRU iKlxbJ"
+        class="sc-dhKdPU inPPyg"
       >
         56642105087
       </p>
     </div>
     <div
-      class="sc-jXbVAB hopCNy"
+      class="sc-dAlxHm evHRGf"
     >
       <button
         bgcolor="#ff8858"
-        class="sc-aYaIB kOsZDd"
+        class="sc-aYaIB eYtHmf"
         role="button"
       >
         Revisar novamente
       </button>
       <button
         bgcolor="#fc2a2a"
-        class="sc-aYaIB gfRTEx"
+        class="sc-aYaIB eQVzbP"
         role="button"
       >
         Apagar
