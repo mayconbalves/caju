@@ -1,19 +1,51 @@
 
 # Caju Front End Teste
 
-Esse é um desafio técnico para você demonstrar suas habilidades como frontend, sua missão será dar continuidade ao desenvolvimento da plataforma de admissão que consiste em duas telas, a tela de `Dashboard` e uma tela de `Cadastro`.
+## Instruções de como rodar o projeto
 
-O `Dashboard` mostra todas as admissões criadas, com as opções de aprovar, reprovar e excluir.
+### Faça o clone do projeto:
 
-![Screenshot 2024-06-11 at 11 48 24 AM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/fedeff5c-a0d3-4df1-aebd-1f2d25c56a48)
+```shell
+https://github.com/mayconbalves/caju
+```
 
-Dashboard com a listagem das admissões.
+### Instale as dependências usando `yarn` ou `npm`
+```shell
+yarn ou npm i
+```
 
-![Screenshot 2024-06-11 at 1 52 35 PM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/3b002341-454b-4b24-82cb-6390656b56cc)
+### Rodando o json server
+```shell
+yarn init:db 
+```
 
-A tela de `Cadastro` exibe um formulário simples que será utilizado para criar as admissões.
+### Rodando o projeto
+```shell
+yarn dev
+```
 
-![Screenshot 2024-06-11 at 11 48 47 AM](https://github.com/caju-beneficios/caju-front-teste-1/assets/31169925/bbbb211c-165f-40e5-b2af-61adafd61398)
+### Rodando storybook
+```shell
+yarn storybook
+```
+
+### Rodando os testes
+```shell
+yarn test
+```
+
+### Rodando os testes em modo watch
+```shell
+yarn test:watch
+```
+
+
+Se tudo ocorreu bem os seguintes serviços estarão disponiveis em:
+<br/>
+
+Aplicação http://localhost:3001/
+<br/>
+Json Web Server http://localhost:3000/
 
 ## Apresentanção do problema
 
@@ -25,28 +57,28 @@ Sinta-se a vontade para refatorar, criar novas pastas, componentes, hooks, utils
 
 ### Tela Dashboard
   
-- Implementar `GET` ao carregar a pagina e ao fazer pequisa por `CPF`
-- Filtrar os cards por coluna, usando o status.
-- Implementar `PUT` ao clicar em Reprovar e alterar o status para `REPROVED`
-- Implementar `PUT` ao clicar em Aprovar e alterar o status para `APPROVED`
-- Implementar `PUT` ao clicar em Revisar novamente e alterar o status para `REVIEW`
-- Implementar `DELETE` ao clicar no lixeira no card.
-- O botão de `Reprovar` e `Aprovar` só deve aparecer em admissões com o status `REVIEW` 
-- O botão `Revisar novamente` só deve aparecer em admissões com o status `REPROVED` ou `APPROVED`
-- Implementar um loading na tela ao realizar requisições.
-- Todas as ações devem ter modal de confirmação e uma notificação de sucesso ou erro
-- Na pesquisa por CPF realizar a requisição automaticamente ao preencher um CPF válido
-- Adicionar máscara de CPF no campo de pesquisa.
-- Atualizar os dados (refetch) ao clicar no ícone de atualizar
+- ✅ Implementar `GET` ao carregar a pagina e ao fazer pequisa por `CPF`
+- ✅ Filtrar os cards por coluna, usando o status.
+- ✅ Implementar `PUT` ao clicar em Reprovar e alterar o status para `REPROVED`
+- ✅ Implementar `PUT` ao clicar em Aprovar e alterar o status para `APPROVED`
+- ✅ Implementar `PUT` ao clicar em Revisar novamente e alterar o status para `REVIEW`
+- ✅ Implementar `DELETE` ao clicar no lixeira no card.
+- ✅ O botão de `Reprovar` e `Aprovar` só deve aparecer em admissões com o status `REVIEW` 
+- ✅ O botão `Revisar novamente` só deve aparecer em admissões com o status `REPROVED` ou `APPROVED`
+- ✅ Implementar um loading na tela ao realizar requisições.
+- ✅ Todas as ações devem ter modal de confirmação e uma notificação de sucesso ou erro
+- ✅ Na pesquisa por CPF realizar a requisição automaticamente ao preencher um CPF válido
+- ✅ Adicionar máscara de CPF no campo de pesquisa.
+- ✅ Atualizar os dados (refetch) ao clicar no ícone de atualizar
 
 
 ### Tela Cadastro
 
-- Implementar validação no campo de `email` para que aceite apenas emails válidos
-- Implementar validação no campo `nome completo` para que aceite pelo menos um espaço, no mínimo duas letras, e que a primeira letra não seja um número.
-- Implementar validação no campo CPF para aceitar apenas CPFs válidos e adicionar uma máscara de CPF ao campo.
-- Implementar `POST` ao preencher todos os campos corretamentes.
-- Redirecionar ao `/dashboard` ao criar uma nova admissão.
+- ✅ Implementar validação no campo de `email` para que aceite apenas emails válidos
+- ✅ Implementar validação no campo `nome completo` para que aceite pelo menos um espaço, no mínimo duas letras, e que a primeira letra não seja um número.
+- ✅ Implementar validação no campo CPF para aceitar apenas CPFs válidos e adicionar uma máscara de CPF ao campo.
+- ✅ Implementar `POST` ao preencher todos os campos corretamentes.
+- ✅ Redirecionar ao `/dashboard` ao criar uma nova admissão.
 
 
 ## API
@@ -70,73 +102,40 @@ Para realizar a pesquisa por CPF, utilize essa funcionalidade do json-web-server
 <br/>
 https://github.com/typicode/json-server/tree/v0?tab=readme-ov-file#filter
 
+Mas se quiser pode usar essa API criada com nodejs
+https://caju-backend.vercel.app/api
+
 
 ## Extras (opcional)
 
-- Testes Unitários e de Integração `(Obrigátorio para Senior e Tech Lead)`
-- End-to-End (E2E) 
-- Configuração de CI/CD com deploy automatizado
-
-## Dicas e sugestões
-
-- Faça bom uso da componentização
-- Garanta que a aplicação é performática
-- Faça bom uso do HTML e WAI-ARIA
-- Garanta uma experiência fluida e acessível
-- Utilize conceitos (SOLID, DRY, KISS, Clean code) e design patterns
-- Crie testes coesos e que garantam o bom funcionamento da aplicação
-
-### Sua performance será avaliada com base nos seguintes pontos:
-
-- A aplicação funciona conforme o esperado seguindo todas as especificações
-- O código é claro e de fácil entendimento
-- Conhecimento em HTML, CSS, JavaScript / TypeScript e React
-- Experiência do usuário
-- Arquitetura (conceitos, patterns, algoritmos, forma como os problemas foram solucionados)
-- Boas práticas de desenvolvimento
-- Proeficiência com automação de testes. Não exigimos 100% de cobertura
-- Senso crítico e analítico
-
-`Nos surpreenda demonstrando toda a sua habilidade e conhecimento.`
-
-## Iniciando o desenvolvimento
-
-Realize o clone do repositório e instale as dependências
-
-```shell
-git clone https://github.com/caju-beneficios/caju-front-teste-1.git
-cd caju-front-test-1
-```
-
-```shell
-yarn install
-```
-
-Inicie o servidor do Json Web Server para consumir a API
-
-```shell
-yarn init:db
-```
-
-Execute a aplicação
-
-```shell
-yarn dev
-```
-
-Se tudo ocorreu bem os seguintes serviços estarão disponiveis em:
-<br/>
-
-Aplicação http://localhost:3001/
-<br/>
-Json Web Server http://localhost:3000/
-
-Caso necessite executar a suíte de testes use o comando abaixo:
-
-```shell
-yarn test:dev
-```
+- ✅ Testes Unitários e de Integração `(Obrigátorio para Senior e Tech Lead)`
+- ✅ Storybook
+- ✅ Configuração de CI/CD com deploy automatizado
 
 
-Para concluir o desenvolvimento faça as edições necessárias e depois envie a URL do novo repositório com suas alterações para o RH.
+## Tela de dashboard
+
+https://github.com/user-attachments/assets/390f987a-ab9e-4e26-8b26-ee93bc685a26
+
+
+## Busca por cpf
+
+https://github.com/user-attachments/assets/322eea0c-e8a1-4d17-b1e8-f0d4708bf0e3
+
+## Busca por cpf não encontrada
+
+https://github.com/user-attachments/assets/bff47370-4604-4380-80a5-c2d40dbbb584
+
+## Erro no formulário
+
+https://github.com/user-attachments/assets/edb8aa6f-dc1e-4a93-93f7-13953cac59b9
+
+## Sucesso do formulário
+
+https://github.com/user-attachments/assets/66d849c9-9746-494b-b3f4-3ad1f93598b3
+
+
+
+
+
 
