@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewUserForm Component should be create snapshot 1`] = `
+<div>
+  <form>
+    <div
+      class="sc-gsFSjX nzYms"
+    >
+      <label>
+        Nome
+      </label>
+      <input
+        aria-invalid="false"
+        aria-label="Nome"
+        class="sc-kAycRU iFzHoK"
+        name="employeeName"
+        placeholder="Nome"
+        value=""
+      />
+    </div>
+    <div
+      class="sc-gsFSjX nzYms"
+    >
+      <label>
+        Email
+      </label>
+      <input
+        aria-invalid="false"
+        aria-label="Email"
+        class="sc-kAycRU iFzHoK"
+        name="email"
+        placeholder="Email"
+        type="email"
+        value=""
+      />
+    </div>
+    <div
+      class="sc-gsFSjX nzYms"
+    >
+      <label>
+        CPF
+      </label>
+      <input
+        aria-invalid="false"
+        aria-label="CPF"
+        class="sc-kAycRU iFzHoK"
+        name="documentId"
+        placeholder="CPF"
+        value=""
+      />
+    </div>
+    <div
+      class="sc-gsFSjX nzYms"
+    >
+      <label>
+        Data de admissão
+      </label>
+      <input
+        aria-invalid="false"
+        aria-label="Data de admissão"
+        class="sc-kAycRU iFzHoK"
+        name="admissionDate"
+        type="date"
+        value=""
+      />
+    </div>
+    <button
+      bgcolor="#64a98c"
+      class="sc-aYaIB dnacNp"
+      role="button"
+      type="submit"
+    >
+      Cadastrar
+    </button>
+  </form>
+</div>
+`;

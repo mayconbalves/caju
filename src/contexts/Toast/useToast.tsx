@@ -17,7 +17,6 @@ export const useToast = () => {
 export const ToastProvider = ({ children }: { children: ReactNode }) => {
   const [toasts, setToasts] = useState<{ message: string; type: 'success' | 'error' }[]>([])
 
-  // Memoizar a função showToast
   const showToast = useCallback((message: string, type: 'success' | 'error') => {
     setToasts((prev) => [...prev, { message, type }])
     setTimeout(() => {
