@@ -63,6 +63,9 @@ yarn test:watch
 yarn test:coverage
 ```
 
+<img width="812" alt="Captura de Tela 2024-10-24 às 21 07 23" src="https://github.com/user-attachments/assets/064d482f-6c22-4c1b-a0a8-0042b4d20b08">
+<br />
+
 Se tudo ocorreu bem os seguintes serviços estarão disponiveis em:
 <br/>
 
