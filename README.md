@@ -15,6 +15,12 @@ nvm use
 Ou instale o nodejs na versão 20.15.0
 ```
 
+### Adicione um arquivo .env na raiz do projeto
+
+```shell
+VITE_API_URL=http://localhost:3000
+```
+
 ### Instale as dependências usando `yarn` ou `npm`
 
 ```shell
