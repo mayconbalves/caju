@@ -57,6 +57,12 @@ yarn test
 yarn test:watch
 ```
 
+### Vendo o coverage
+
+```shell
+yarn test:coverage
+```
+
 Se tudo ocorreu bem os seguintes serviços estarão disponiveis em:
 <br/>
 
